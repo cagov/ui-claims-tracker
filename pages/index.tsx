@@ -12,11 +12,10 @@ import { Footer } from '../components/Footer'
 import { WorkInProgress } from '../components/WorkInProgress'
 
 import queryApiGateway, { Claim } from '../utils/queryApiGateway'
-import getScenario, { ScenarioType } from '../utils/getScenario'
+import getScenarioContent from '../utils/getScenarioContent'
 
 export interface HomeProps {
   claimData?: Claim[]
-  scenarioType?: ScenarioType
   loading: boolean
 }
 
@@ -48,13 +47,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   const claimData: Claim = await queryApiGateway(req)
 
   // Run business logic to determine the current scenario.
-  const scenarioType: ScenarioType = getScenario(claimData)
+  const scenarioContent = getScenarioContent(claimData)
 
   // Return Props.
   return {
     props: {
       claimData: [claimData],
-      scenarioType: scenarioType,
       loading: false,
       ...(await serverSideTranslations(locale || 'en', ['common', 'header', 'footer'])),
     },

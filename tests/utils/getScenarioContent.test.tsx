@@ -1,11 +1,25 @@
-import getScenario, { ScenarioType } from '../../utils/getScenario'
+import getScenarioContent, { getScenario, ScenarioContent, ScenarioType } from '../../utils/getScenarioContent'
+import { useTranslation } from 'next-i18next'
+
+// Shared test constants
+const pendingDeterminationScenario = { pendingDetermination: ['temporary text'] }
+const { t } = useTranslation('common')
 
 /**
  * Begin tests
  */
+
+// Test getScenarioContent()
+describe('Retrieving the scenario content', () => {
+  it('returns the correct status description for the scenario', () => {
+    const content: ScenarioContent = getScenarioContent(pendingDeterminationScenario)
+    expect(content).toBe(t('claim-status.pending-determination'))
+  })
+})
+
+// Test getScenario()
 describe('Identifying the scenario', () => {
   it('returns the pending determination scenario if there is a pendingDetermination object', () => {
-    const pendingDeterminationScenario = { pendingDetermination: ['temporary text'] }
     const scenarioType: ScenarioType = getScenario(pendingDeterminationScenario)
     expect(scenarioType).toBe(ScenarioType.PendingDetermination)
   })

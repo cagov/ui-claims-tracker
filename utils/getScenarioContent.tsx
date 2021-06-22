@@ -1,4 +1,5 @@
 import { Claim } from './queryApiGateway'
+import { useTranslation } from 'next-i18next'
 
 export enum ScenarioType {
   PendingDetermination = 'Pending Determination Scenario',
@@ -6,13 +7,17 @@ export enum ScenarioType {
   GenericAllClear = 'Generic All Clear Scenario',
 }
 
+export interface ScenarioContent {
+  statusDescription: string
+}
+
 /**
- * Return the correct scenario to display.
+ * Identify the correct scenario to display.
  *
  * @param {Qbject} claim
  * @returns {Object}
  */
-export default function getScenario(claimData: Claim): ScenarioType {
+export function getScenario(claimData: Claim): ScenarioType {
   // The pending determination scenario: if claimData contains any pendingDetermination
   // objects
   // @TODO: refactor with more detailed pending determination scenarios #252
@@ -32,6 +37,31 @@ export default function getScenario(claimData: Claim): ScenarioType {
   // This is unexpected
   // @TODO: Log the scenario and display 500
   else {
-    throw new Error('Unexpected scenario')
+    // throw new Error('Unexpected scenario')
+    return ScenarioType.GenericAllClear
   }
+}
+
+/**
+ * Return scenario content.
+ *
+ * @param {Object} claim
+ * @param {enum} scenarioType
+ * @returns {Object}
+ */
+export default function getScenarioContent(claimData: Claim): ScenarioContent {
+  const content = {} as ScenarioContent
+
+  // Get the scenario type.
+  const scenarioType = getScenario(claimData)
+
+  if (scenarioType === ScenarioType.PendingDetermination) {
+    content.statusDescription = 'claim-status.pending-determination'
+  } else if (scenarioType === ScenarioType.GenericPending) {
+    content.statusDescription = 'claim-status.generic-pending'
+  } else {
+    content.statusDescription = 'claim-status.generic-all-clear'
+  }
+
+  return content
 }
