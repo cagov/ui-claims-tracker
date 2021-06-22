@@ -1,9 +1,9 @@
 import getScenarioContent, { getScenario, ScenarioContent, ScenarioType } from '../../utils/getScenarioContent'
-import { useTranslation } from 'next-i18next'
 
 // Shared test constants
 const pendingDeterminationScenario = { pendingDetermination: ['temporary text'] }
-const { t } = useTranslation('common')
+const genericPendingScenario = { hasPendingWeeks: true }
+const genericAllClearScenario = { hasPendingWeeks: false }
 
 /**
  * Begin tests
@@ -12,8 +12,14 @@ const { t } = useTranslation('common')
 // Test getScenarioContent()
 describe('Retrieving the scenario content', () => {
   it('returns the correct status description for the scenario', () => {
-    const content: ScenarioContent = getScenarioContent(pendingDeterminationScenario)
-    expect(content).toBe(t('claim-status.pending-determination'))
+    const pendingDetermination: ScenarioContent = getScenarioContent(pendingDeterminationScenario)
+    expect(pendingDetermination.statusDescription).toBe('claim-status.pending-determination')
+
+    const genericPending: ScenarioContent = getScenarioContent(genericPendingScenario)
+    expect(genericPending.statusDescription).toBe('claim-status.generic-pending')
+
+    const genericAllClear: ScenarioContent = getScenarioContent(genericAllClearScenario)
+    expect(genericAllClear.statusDescription).toBe('claim-status.generic-all-clear')
   })
 })
 
@@ -41,7 +47,6 @@ describe('Identifying the scenario', () => {
   })
 
   it('returns generic pending scenario if there are pending weeks', () => {
-    const genericPendingScenario = { hasPendingWeeks: true }
     const scenarioType: ScenarioType = getScenario(genericPendingScenario)
     expect(scenarioType).toBe(ScenarioType.GenericPending)
   })
@@ -59,7 +64,6 @@ describe('Identifying the scenario', () => {
   })
 
   it('returns generic all clear scenario if there are no pending weeks', () => {
-    const genericAllClearScenario = { hasPendingWeeks: false }
     const scenarioType: ScenarioType = getScenario(genericAllClearScenario)
     expect(scenarioType).toBe(ScenarioType.GenericAllClear)
   })

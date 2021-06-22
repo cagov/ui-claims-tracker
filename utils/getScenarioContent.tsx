@@ -1,5 +1,4 @@
 import { Claim } from './queryApiGateway'
-import { useTranslation } from 'next-i18next'
 
 export enum ScenarioType {
   PendingDetermination = 'Pending Determination Scenario',
