@@ -1,9 +1,9 @@
 import { Claim } from './queryApiGateway'
 
 export enum ScenarioType {
-  PendingDetermination,
-  GenericPending,
-  GenericAllClear,
+  PendingDetermination = 'Pending Determination Scenario',
+  GenericPending = 'Generic Pending Scenario',
+  GenericAllClear = 'Generic All Clear Scenario',
 }
 
 /**
@@ -26,7 +26,12 @@ export default function getScenario(claimData: Claim): ScenarioType {
   }
   // The generic "all clear"/base state scenario: if there are no pendingDetermination objects
   // and hasPendingWeeks is false
-  else {
+  else if (claimData.hasPendingWeeks === false) {
     return ScenarioType.GenericAllClear
+  }
+  // This is unexpected
+  // @TODO: Log the scenario and display 500
+  else {
+    throw new Error('Unexpected scenario')
   }
 }
