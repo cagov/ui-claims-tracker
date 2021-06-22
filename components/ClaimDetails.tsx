@@ -1,16 +1,10 @@
 import { useTranslation } from 'next-i18next'
 import { InfoField } from './InfoField'
+import { ClaimDetailsContent } from '../types/common'
 
-export interface ClaimDetailsProps {
+export interface ClaimDetailsProps extends ClaimDetailsContent {
   loading: boolean
   title: string
-  programType: string
-  benefitYear: string
-  claimBalance: string
-  weeklyBenefitAmount: string
-  lastPaymentIssued: string
-  extentionType: string
-  extensionEndDate: string
 }
 
 export const ClaimDetails: React.FC<ClaimDetailsProps> = ({

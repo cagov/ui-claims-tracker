@@ -2,16 +2,15 @@ import { useTranslation } from 'next-i18next'
 
 import { NextSteps } from './NextSteps'
 import { TextLine } from './TextLine'
+import { ClaimStatusContent } from '../types/common'
 
-export interface ClaimStatusProps {
+export interface ClaimStatusProps extends ClaimStatusContent {
   loading: boolean
-  statusDescriptionKey: string
-  nextSteps?: string[]
 }
 
 export const ClaimStatus: React.FC<ClaimStatusProps> = ({
   loading,
-  statusDescriptionKey = 'claim-status.generic-pending',
+  statusDescription = 'claim-status.generic-pending',
   nextSteps = ['step one', 'step two'],
 }) => {
   const { t } = useTranslation('common')
@@ -20,7 +19,7 @@ export const ClaimStatus: React.FC<ClaimStatusProps> = ({
     <div className="claim-status">
       <h2>{t('claim-status.title')}</h2>
       <div className="pending-status">
-        <TextLine loading={loading} text={t(statusDescriptionKey)} />
+        <TextLine loading={loading} text={t(statusDescription)} />
       </div>
       <div className="status-box">
         <div className="topbar">
