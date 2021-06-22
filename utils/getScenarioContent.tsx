@@ -1,4 +1,4 @@
-import { Claim } from './queryApiGateway'
+import { Claim } from '../types/common'
 
 export enum ScenarioType {
   PendingDetermination = 'Pending Determination Scenario',

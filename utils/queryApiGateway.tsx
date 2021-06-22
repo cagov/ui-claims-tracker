@@ -2,17 +2,8 @@ import path from 'path'
 import fs from 'fs'
 import https from 'https'
 import fetch, { Response } from 'node-fetch'
-import type { IncomingMessage } from 'http'
-
-export interface PendingDetermination {
-  determinationStatus?: null | undefined | string
-}
-
-export interface Claim {
-  ClaimType?: null | undefined | string
-  hasPendingWeeks?: null | undefined | boolean
-  pendingDetermination?: null | [PendingDetermination]
-}
+import { IncomingMessage } from 'http'
+import { Claim } from '../types/common'
 
 export interface QueryParams {
   user_key: string

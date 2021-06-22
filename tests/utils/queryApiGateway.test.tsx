@@ -1,4 +1,5 @@
-import queryApiGateway, { buildApiUrl, extractJSON, Claim, QueryParams } from '../../utils/queryApiGateway'
+import { Claim } from '../../types/common'
+import queryApiGateway, { buildApiUrl, extractJSON, QueryParams } from '../../utils/queryApiGateway'
 import mockEnv from 'mocked-env'
 import fs from 'fs'
 import fetch from 'node-fetch'

@@ -11,8 +11,9 @@ import { Main } from '../components/Main'
 import { Footer } from '../components/Footer'
 import { WorkInProgress } from '../components/WorkInProgress'
 
-import queryApiGateway, { Claim } from '../utils/queryApiGateway'
+import queryApiGateway from '../utils/queryApiGateway'
 import getScenarioContent from '../utils/getScenarioContent'
+import { Claim } from '../types/common'
 
 export interface HomeProps {
   claimData?: Claim[]
