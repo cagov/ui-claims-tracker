@@ -37,7 +37,7 @@ export const ClaimDetails: React.FC<ClaimDetailsProps> = ({
           </div>
           <div className="col-6">
             <div />
-            <InfoField loading={loading} label={t('claim-details.extension-type')} text={extentionType} />
+            <InfoField loading={loading} label={t('claim-details.extension-type')} text={extensionType} />
 
             <InfoField loading={loading} label={t('claim-details.extension-end-date')} text={extensionEndDate} />
           </div>

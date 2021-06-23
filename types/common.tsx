@@ -19,7 +19,7 @@ export interface ClaimDetailsContent {
   claimBalance: string
   weeklyBenefitAmount: string
   lastPaymentIssued: string
-  extentionType: string
+  extensionType: string
   extensionEndDate: string
 }
 
