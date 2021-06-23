@@ -8,11 +8,7 @@ export interface ClaimStatusProps extends ClaimStatusContent {
   loading: boolean
 }
 
-export const ClaimStatus: React.FC<ClaimStatusProps> = ({
-  loading,
-  statusDescription = 'claim-status.generic-pending',
-  nextSteps = ['step one', 'step two'],
-}) => {
+export const ClaimStatus: React.FC<ClaimStatusProps> = ({ loading = false, statusDescription, nextSteps }) => {
   const { t } = useTranslation('common')
 
   return (

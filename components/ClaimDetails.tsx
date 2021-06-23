@@ -8,13 +8,13 @@ export interface ClaimDetailsProps extends ClaimDetailsContent {
 
 export const ClaimDetails: React.FC<ClaimDetailsProps> = ({
   loading = false,
-  programType = 'Unemployment Insurance (UI)',
-  benefitYear = '3/21/2020 - 3/20/2021',
-  claimBalance = '$508.00',
-  weeklyBenefitAmount = '$120.00',
-  lastPaymentIssued = '4/29/2021',
-  extentionType = 'Tier 2 Extension',
-  extensionEndDate = '5/22/2021',
+  programType,
+  benefitYear,
+  claimBalance,
+  weeklyBenefitAmount,
+  lastPaymentIssued,
+  extensionType,
+  extensionEndDate,
 }) => {
   const { t } = useTranslation('common')
 
