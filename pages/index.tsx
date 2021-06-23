@@ -13,7 +13,7 @@ import { WorkInProgress } from '../components/WorkInProgress'
 
 import queryApiGateway from '../utils/queryApiGateway'
 import getScenarioContent from '../utils/getScenarioContent'
-import { ClaimDetailsContent, ClaimStatusContent, ScenarioContent } from '../types/common'
+import { ScenarioContent } from '../types/common'
 
 export interface HomeProps {
   scenarioContent: ScenarioContent
@@ -22,24 +22,6 @@ export interface HomeProps {
 
 export default function Home({ scenarioContent, loading }: HomeProps): ReactElement {
   const { t } = useTranslation('common')
-
-  const statusContent: ClaimStatusContent = {
-    statusDescription: 'claim-status.generic-all-clear',
-    nextSteps: [
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    ],
-  }
-
-  const detailsContent: ClaimDetailsContent = {
-    programType: 'Unemployment Insurance (UI)',
-    benefitYear: '3/21/2020 - 3/20/2021',
-    claimBalance: '$0.00',
-    weeklyBenefitAmount: '$111.00',
-    lastPaymentIssued: '4/29/2021',
-    extensionType: 'Tier 2 Extension',
-    extensionEndDate: '5/22/2021',
-  }
 
   return (
     <Container fluid className="index">
@@ -50,7 +32,11 @@ export default function Home({ scenarioContent, loading }: HomeProps): ReactElem
       </Head>
       <WorkInProgress />
       <Header />
-      <Main loading={loading} statusContent={statusContent} detailsContent={detailsContent} />
+      <Main
+        loading={loading}
+        statusContent={scenarioContent.statusContent}
+        detailsContent={scenarioContent.detailsContent}
+      />
       <Footer />
       {console.dir({ scenarioContent })} {/* @TODO: Remove. For development purposes only. */}
     </Container>
@@ -65,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   // Make the API request and return the data.
   const claimData = await queryApiGateway(req)
 
-  // Run business logic to determine the current scenario.
+  // Run business logic to get content for the current scenario.
   const scenarioContent = getScenarioContent(claimData)
 
   // Return Props.

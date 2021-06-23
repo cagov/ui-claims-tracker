@@ -1,4 +1,5 @@
-import getScenarioContent, { getScenario, ScenarioContent, ScenarioType } from '../../utils/getScenarioContent'
+import getScenarioContent, { getScenario, ScenarioType } from '../../utils/getScenarioContent'
+import { ScenarioContent } from '../../types/common'
 
 // Shared test constants
 const pendingDeterminationScenario = { pendingDetermination: ['temporary text'] }
@@ -13,13 +14,13 @@ const genericAllClearScenario = { hasPendingWeeks: false }
 describe('Retrieving the scenario content', () => {
   it('returns the correct status description for the scenario', () => {
     const pendingDetermination: ScenarioContent = getScenarioContent(pendingDeterminationScenario)
-    expect(pendingDetermination.statusDescription).toBe('claim-status.pending-determination')
+    expect(pendingDetermination.statusContent.statusDescription).toBe('claim-status.pending-determination')
 
     const genericPending: ScenarioContent = getScenarioContent(genericPendingScenario)
-    expect(genericPending.statusDescription).toBe('claim-status.generic-pending')
+    expect(genericPending.statusContent.statusDescription).toBe('claim-status.generic-pending')
 
     const genericAllClear: ScenarioContent = getScenarioContent(genericAllClearScenario)
-    expect(genericAllClear.statusDescription).toBe('claim-status.generic-all-clear')
+    expect(genericAllClear.statusContent.statusDescription).toBe('claim-status.generic-all-clear')
   })
 })
 
