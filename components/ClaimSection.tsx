@@ -6,7 +6,7 @@ export interface ClaimSectionProps extends ScenarioContent {
   loading: boolean
 }
 
-export const ClaimSection: React.FC<ClaimSectionProps> = ({ statusContent, detailsContent, loading = false }) => {
+export const ClaimSection: React.FC<ClaimSectionProps> = ({ loading = false, statusContent, detailsContent }) => {
   return (
     <div className="claim-section">
       <ClaimStatus
