@@ -1,0 +1,11 @@
+{
+  "pending-determination": {
+    "description": "We need to confirm your eligibility for benefits."
+  },
+  "base-pending": {
+    "description": "Your payments are pending further review."
+  },
+  "base-no-pending": {
+    "description": "There are no pending issues at this time."
+  }
+}

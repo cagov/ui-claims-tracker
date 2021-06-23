@@ -59,7 +59,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
     props: {
       scenarioContent: scenarioContent,
       loading: false,
-      ...(await serverSideTranslations(locale || 'en', ['common', 'header', 'footer'])),
+      ...(await serverSideTranslations(locale || 'en', ['common', 'claim-status'])),
     },
   }
 }

@@ -13,9 +13,6 @@
   "change-locale": "En español",
   "claim-status": {
     "title": "Claim Status",
-    "pending-determination": "We need to confirm your eligibility for benefits.",
-    "generic-pending": "Your payments are pending further review.",
-    "generic-all-clear": "There are no pending issues at this time.",
     "next-steps": "Next Steps"
   },
   "claim-details": {

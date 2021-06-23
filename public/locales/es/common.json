@@ -13,9 +13,6 @@
   "change-locale": "In English",
   "claim-status": {
     "title": "Claim Status",
-    "pending-determination": "Necesitamos confirmar su elegibilidad para los beneficios.",
-    "generic-pending": "Sus pagos están pendientes de revisión adicional.",
-    "generic-all-clear": "No hay asuntos pendientes en este momento.",
     "next-steps": "Próximos Pasos"
   },
   "claim-details": {

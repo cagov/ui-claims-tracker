@@ -3,8 +3,8 @@ import { ScenarioContent } from '../../types/common'
 
 // Shared test constants
 const pendingDeterminationScenario = { pendingDetermination: ['temporary text'] }
-const genericPendingScenario = { hasPendingWeeks: true }
-const genericAllClearScenario = { hasPendingWeeks: false }
+const basePendingScenario = { hasPendingWeeks: true }
+const baseNoPendingScenario = { hasPendingWeeks: false }
 
 /**
  * Begin tests
@@ -14,13 +14,13 @@ const genericAllClearScenario = { hasPendingWeeks: false }
 describe('Retrieving the scenario content', () => {
   it('returns the correct status description for the scenario', () => {
     const pendingDetermination: ScenarioContent = getScenarioContent(pendingDeterminationScenario)
-    expect(pendingDetermination.statusContent.statusDescription).toBe('claim-status.pending-determination')
+    expect(pendingDetermination.statusContent.statusDescription).toBe('pending-determination.description')
 
-    const genericPending: ScenarioContent = getScenarioContent(genericPendingScenario)
-    expect(genericPending.statusContent.statusDescription).toBe('claim-status.generic-pending')
+    const basePending: ScenarioContent = getScenarioContent(basePendingScenario)
+    expect(basePending.statusContent.statusDescription).toBe('base-pending.description')
 
-    const genericAllClear: ScenarioContent = getScenarioContent(genericAllClearScenario)
-    expect(genericAllClear.statusContent.statusDescription).toBe('claim-status.generic-all-clear')
+    const baseNoPending: ScenarioContent = getScenarioContent(baseNoPendingScenario)
+    expect(baseNoPending.statusContent.statusDescription).toBe('base-no-pending.description')
   })
 })
 
@@ -47,37 +47,37 @@ describe('Identifying the scenario', () => {
     expect(scenarioTypeWithout).toBe(ScenarioType.PendingDetermination)
   })
 
-  it('returns generic pending scenario if there are pending weeks', () => {
-    const scenarioType: ScenarioType = getScenario(genericPendingScenario)
-    expect(scenarioType).toBe(ScenarioType.GenericPending)
+  it('returns the base state (with pending weeks) if there are pending weeks', () => {
+    const scenarioType: ScenarioType = getScenario(basePendingScenario)
+    expect(scenarioType).toBe(ScenarioType.BasePending)
   })
 
-  it('returns generic pending scenario if there are pending weeks and pendingDetermination is null', () => {
-    const genericPendingScenarioNull = { hasPendingWeeks: true, pendingDetermination: null }
-    const scenarioType: ScenarioType = getScenario(genericPendingScenarioNull)
-    expect(scenarioType).toBe(ScenarioType.GenericPending)
+  it('returns the base state (with pending weeks) if there are pending weeks and pendingDetermination is null', () => {
+    const basePendingScenarioNull = { hasPendingWeeks: true, pendingDetermination: null }
+    const scenarioType: ScenarioType = getScenario(basePendingScenarioNull)
+    expect(scenarioType).toBe(ScenarioType.BasePending)
   })
 
-  it('returns generic pending scenario if there are pending weeks and pendingDetermination is an empty array', () => {
-    const genericPendingScenarioEmpty = { hasPendingWeeks: true, pendingDetermination: [] }
-    const scenarioType: ScenarioType = getScenario(genericPendingScenarioEmpty)
-    expect(scenarioType).toBe(ScenarioType.GenericPending)
+  it('returns the base state (with pending weeks) if there are pending weeks and pendingDetermination is an empty array', () => {
+    const basePendingScenarioEmpty = { hasPendingWeeks: true, pendingDetermination: [] }
+    const scenarioType: ScenarioType = getScenario(basePendingScenarioEmpty)
+    expect(scenarioType).toBe(ScenarioType.BasePending)
   })
 
-  it('returns generic all clear scenario if there are no pending weeks', () => {
-    const scenarioType: ScenarioType = getScenario(genericAllClearScenario)
-    expect(scenarioType).toBe(ScenarioType.GenericAllClear)
+  it('returns base state (with no pending weeks) if there are no pending weeks', () => {
+    const scenarioType: ScenarioType = getScenario(baseNoPendingScenario)
+    expect(scenarioType).toBe(ScenarioType.BaseNoPending)
   })
 
-  it('returns generic all clear scenario if there are no pending weeks and pendingDetermination is null', () => {
-    const genericAllClearScenarioNull = { hasPendingWeeks: false, pendingDetermination: null }
-    const scenarioType: ScenarioType = getScenario(genericAllClearScenarioNull)
-    expect(scenarioType).toBe(ScenarioType.GenericAllClear)
+  it('returns base state (with no pending weeks) if there are no pending weeks and pendingDetermination is null', () => {
+    const baseNoPendingScenarioNull = { hasPendingWeeks: false, pendingDetermination: null }
+    const scenarioType: ScenarioType = getScenario(baseNoPendingScenarioNull)
+    expect(scenarioType).toBe(ScenarioType.BaseNoPending)
   })
 
-  it('returns generic all clear scenario if there are no pending weeks and pendingDetermination is an empty array', () => {
-    const genericAllClearScenarioEmpty = { hasPendingWeeks: false, pendingDetermination: [] }
-    const scenarioType: ScenarioType = getScenario(genericAllClearScenarioEmpty)
-    expect(scenarioType).toBe(ScenarioType.GenericAllClear)
+  it('returns base state (with no pending weeks) if there are no pending weeks and pendingDetermination is an empty array', () => {
+    const baseNoPendingScenarioEmpty = { hasPendingWeeks: false, pendingDetermination: [] }
+    const scenarioType: ScenarioType = getScenario(baseNoPendingScenarioEmpty)
+    expect(scenarioType).toBe(ScenarioType.BaseNoPending)
   })
 })

@@ -9,7 +9,7 @@ export interface ClaimStatusProps extends ClaimStatusContent {
 }
 
 export const ClaimStatus: React.FC<ClaimStatusProps> = ({ loading = false, statusDescription, nextSteps }) => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation(['common', 'claim-status'])
 
   return (
     <div className="claim-status">

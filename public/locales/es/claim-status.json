@@ -1,0 +1,11 @@
+{
+  "pending-determination": {
+    "description": "Necesitamos confirmar su elegibilidad para los beneficios."
+  },
+  "base-pending": {
+    "description": "Sus pagos están pendientes de revisión adicional."
+  },
+  "base-no-pending": {
+    "description": "No hay asuntos pendientes en este momento."
+  }
+}
