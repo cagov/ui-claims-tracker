@@ -227,7 +227,7 @@ exports[`Exemplar react-test-renderer Snapshot test renders homepage unchanged 1
             <span
               className="text-line"
             >
-              Your payments are pending further review.
+              We need to confirm your eligibility for benefits.
             </span>
           </div>
           <div
@@ -366,20 +366,6 @@ exports[`Exemplar react-test-renderer Snapshot test renders homepage unchanged 1
                     className="info-entry"
                   >
                     Tier 2 Extension
-                  </div>
-                </div>
-                <div
-                  className="info"
-                >
-                  <div
-                    className="info-label"
-                  >
-                    Extension End Date
-                  </div>
-                  <div
-                    className="info-entry"
-                  >
-                    5/22/2021
                   </div>
                 </div>
               </div>
