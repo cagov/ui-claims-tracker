@@ -4,12 +4,10 @@ import { ClaimDetailsContent } from '../types/common'
 
 export interface ClaimDetailsProps extends ClaimDetailsContent {
   loading: boolean
-  title: string
 }
 
 export const ClaimDetails: React.FC<ClaimDetailsProps> = ({
   loading = false,
-  title = 'Claim Details',
   programType = 'Unemployment Insurance (UI)',
   benefitYear = '3/21/2020 - 3/20/2021',
   claimBalance = '$508.00',
@@ -22,7 +20,7 @@ export const ClaimDetails: React.FC<ClaimDetailsProps> = ({
 
   return (
     <div className="claim-details container">
-      <h2>{title}</h2>
+      <h2>{t('claim-details.title')}</h2>
 
       <div className="claim-details-box">
         <div className="row">

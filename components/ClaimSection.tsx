@@ -18,7 +18,6 @@ export const ClaimSection: React.FC<ClaimSectionProps> = ({ loading = false }) =
       />
       <ClaimDetails
         loading={loading}
-        title="Claim Details"
         programType="Unemployment Insurance (UI)"
         benefitYear="3/21/2020 - 3/20/2021"
         claimBalance="$0.00"

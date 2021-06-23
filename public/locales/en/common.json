@@ -19,6 +19,7 @@
     "next-steps": "Next Steps"
   },
   "claim-details": {
+    "title": "Claim Details",
     "benefit-year": "Benefit Year",
     "program-type": "Program Type",
     "claim-balance": "Claim Balance",
