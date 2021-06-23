@@ -14,7 +14,6 @@ export const ClaimDetails: React.FC<ClaimDetailsProps> = ({
   weeklyBenefitAmount,
   lastPaymentIssued,
   extensionType,
-  extensionEndDate,
 }) => {
   const { t } = useTranslation('common')
 
@@ -38,8 +37,6 @@ export const ClaimDetails: React.FC<ClaimDetailsProps> = ({
           <div className="col-6">
             <div />
             <InfoField loading={loading} label={t('claim-details.extension-type')} text={extensionType} />
-
-            <InfoField loading={loading} label={t('claim-details.extension-end-date')} text={extensionEndDate} />
           </div>
         </div>
       </div>

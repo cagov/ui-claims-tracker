@@ -22,7 +22,6 @@ export const ClaimSection: React.FC<ClaimSectionProps> = ({ loading = false, sta
         weeklyBenefitAmount={detailsContent.weeklyBenefitAmount}
         lastPaymentIssued={detailsContent.lastPaymentIssued}
         extensionType={detailsContent.extensionType}
-        extensionEndDate={detailsContent.extensionEndDate}
       />
     </div>
   )

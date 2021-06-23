@@ -19,5 +19,4 @@ ClaimDetails.args = {
   weeklyBenefitAmount: '$120.00',
   lastPaymentIssued: '4/29/2021',
   extensionType: 'Tier 2 Extension',
-  extensionEndDate: '5/22/2021',
 }

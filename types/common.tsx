@@ -32,7 +32,6 @@ export interface ClaimDetailsContent {
   weeklyBenefitAmount: string
   lastPaymentIssued: string
   extensionType: string
-  extensionEndDate: string
 }
 
 export interface ScenarioContent {

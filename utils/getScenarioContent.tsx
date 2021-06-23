@@ -77,7 +77,6 @@ export default function getScenarioContent(claimData: Claim): ScenarioContent {
     weeklyBenefitAmount: '$111.00',
     lastPaymentIssued: '4/29/2021',
     extensionType: 'Tier 2 Extension',
-    extensionEndDate: '5/22/2021',
   }
 
   if (claimData.claimDetails) {
@@ -88,7 +87,6 @@ export default function getScenarioContent(claimData: Claim): ScenarioContent {
     detailsContent.lastPaymentIssued = claimData.claimDetails.lastPaymentIssued
     // @TODO
     // detailsContent.extensionType = ''
-    // detailsContent.extensionEndDate = ''
   }
 
   const content: ScenarioContent = {
