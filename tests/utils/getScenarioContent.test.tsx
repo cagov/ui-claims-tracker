@@ -14,13 +14,13 @@ const baseNoPendingScenario = { hasPendingWeeks: false }
 describe('Retrieving the scenario content', () => {
   it('returns the correct status description for the scenario', () => {
     const pendingDetermination: ScenarioContent = getScenarioContent(pendingDeterminationScenario)
-    expect(pendingDetermination.statusContent.statusDescription).toBe('pending-determination.description')
+    expect(pendingDetermination.statusContent.statusDescription).toBe('claim-status:pending-determination.description')
 
     const basePending: ScenarioContent = getScenarioContent(basePendingScenario)
-    expect(basePending.statusContent.statusDescription).toBe('base-pending.description')
+    expect(basePending.statusContent.statusDescription).toBe('claim-status:base-pending.description')
 
     const baseNoPending: ScenarioContent = getScenarioContent(baseNoPendingScenario)
-    expect(baseNoPending.statusContent.statusDescription).toBe('base-no-pending.description')
+    expect(baseNoPending.statusContent.statusDescription).toBe('claim-status:base-no-pending.description')
   })
 })
 
