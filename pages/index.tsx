@@ -68,6 +68,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   // Make the API request and return the data.
   const claimData = await queryApiGateway(req)
 
+  // @TODO: Remove. For development purposes only.
+  console.log(claimData)
+
   // Run business logic to get content for the current scenario.
   const scenarioContent = getScenarioContent(claimData)
 
