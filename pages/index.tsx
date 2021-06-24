@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Error from 'next/error'
 import Container from 'react-bootstrap/Container'
 import pino from 'pino'
 import { ReactElement } from 'react'
@@ -18,10 +19,11 @@ import { useRouter } from 'next/router'
 
 export interface HomeProps {
   scenarioContent: ScenarioContent
+  errorCode?: number
   loading: boolean
 }
 
-export default function Home({ scenarioContent, loading }: HomeProps): ReactElement {
+export default function Home({ scenarioContent, errorCode = null, loading }: HomeProps): ReactElement {
   const { t } = useTranslation('common')
 
   // Note whether the user came from the main UIO website or UIO Mobile, and match
@@ -29,6 +31,12 @@ export default function Home({ scenarioContent, loading }: HomeProps): ReactElem
   const router = useRouter()
   const userArrivedFromUioMobile = router.query?.from === 'uiom'
 
+  // If any errorCode is provided, render the error page.
+  if (errorCode) {
+    return <Error statusCode={errorCode} />
+  }
+
+  // Otherwise, render normally.
   return (
     <Container fluid className="index">
       <Head>
@@ -55,6 +63,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   const logger = isProd ? pino({}) : pino({ prettyPrint: true })
   logger.info(req)
 
+  const errorCode: number | null = null
+
   // Make the API request and return the data.
   const claimData = await queryApiGateway(req)
 
@@ -65,6 +75,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   return {
     props: {
       scenarioContent: scenarioContent,
+      errorCode: errorCode,
       loading: false,
       ...(await serverSideTranslations(locale || 'en', ['common', 'claim-status'])),
     },
