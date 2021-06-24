@@ -95,10 +95,8 @@ export function getScenario(claimData: Claim): ScenarioType {
     return ScenarioType.BaseNoPending
   }
   // This is unexpected
-  // @TODO: Log the scenario and display 500
   else {
-    // throw new Error('Unexpected scenario')
-    return ScenarioType.BaseNoPending
+    throw new Error('Unknown Scenario')
   }
 }
 
