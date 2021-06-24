@@ -36,6 +36,7 @@ describe('Getting the Claim Status description', () => {
     const baseNoPending = getClaimStatusDescription(ScenarioType.BaseNoPending)
     expect(baseNoPending).toBe('claim-status:base-no-pending.description')
   })
+
   it('throws an error if given an unknown scenario', () => {
     expect(() => {
       getClaimStatusDescription('unknown')
@@ -105,20 +106,15 @@ describe('The base state (with no pending weeks) scenario', () => {
     const scenarioType: ScenarioType = getScenario(baseNoPendingScenarioEmpty)
     expect(scenarioType).toBe(ScenarioType.BaseNoPending)
   })
-
-  it('throws an error if no known combination is given', () => {
-    expect(() => {
-      getScenario({})
-    }).toThrowError('Unknown Scenario')
-  })
 })
 
 // Test getScenario(): error
 describe('Getting the scenario', () => {
-  it.skip('errors when given an unknown scenario', () => {
+  it('errors when given an unknown scenario', () => {
     expect(() => {
       getScenario({})
     }).toThrowError('Unknown Scenario')
+  })
 })
 
 // Test mapProgramType()
