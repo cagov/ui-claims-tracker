@@ -1,0 +1,16 @@
+{
+  "program-type": {
+    "ui": "Unemployment Insurance (UI)",
+    "dua": "Disaster Unemployment Assistance (DUA)",
+    "pua": "Pandemic Unemployment Assistance (PUA)"
+  },
+  "extension-type": {
+    "peuc-1": "Pandemic Emergency Unemployment Compensation (PEUC) - Tier 1 Extension",
+    "peuc-2": "Pandemic Emergency Unemployment Compensation (PEUC) - Tier 2 Extension",
+    "peuc-2-augmentation": "Pandemic Emergency Unemployment Compensation (PEUC) - Tier 2 Augmentation",
+    "fed-ed": "Federal-State Extended Duration (FED-ED)",
+    "tra": "Trade Readjustment Allowance Basic Extension",
+    "tra-additional": "Trade Readjustment Allowance Additional Extension",
+    "te": "Training Extension (TE)"
+  }
+}

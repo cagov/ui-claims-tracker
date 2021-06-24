@@ -1,0 +1,16 @@
+{
+  "program-type": {
+    "ui": "Seguro de desempleo (UI)",
+    "dua": "Asistencia por desempleo por desastre (DUA)",
+    "pua": "Asistencia por desempleo pandémico (PUA)"
+  },
+  "extension-type": {
+    "peuc-1": "Compensación por desempleo de emergencia pandémica (PEUC) - Extensión de nivel 1",
+    "peuc-2": "Compensación por desempleo de emergencia pandémica (PEUC) - Extensión de nivel 2",
+    "peuc-2-augmentation": "Compensación por desempleo de emergencia pandémica (PEUC) - Tier 2 Augmentation",
+    "fed-ed": "Duración extendida federal-estatal (FED-ED)",
+    "tra": "Extensión básica de la asignación por reajuste comercial",
+    "tra-additional": "Extensión adicional de la asignación por reajuste comercial",
+    "te": "Extensión de formación (TE)"
+  }
+}
