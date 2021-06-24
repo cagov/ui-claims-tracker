@@ -87,3 +87,12 @@ describe('The base state (with no pending weeks) scenario', () => {
     expect(scenarioType).toBe(ScenarioType.BaseNoPending)
   })
 })
+
+// Test getScenario(): error
+describe('Getting the scenario', () => {
+  it.skip('errors when given an unknown scenario', () => {
+    expect(() => {
+      getScenario({})
+    }).toThrowError('Unknown Scenario')
+  })
+})
