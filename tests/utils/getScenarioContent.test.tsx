@@ -1,10 +1,11 @@
 import getScenarioContent, {
   getScenario,
+  getClaimStatusDescription,
   mapProgramType,
-  programTypes,
-  ProgramTypeParts,
-  ScenarioType,
   programTypeMapping,
+  ProgramTypeParts,
+  programTypes,
+  ScenarioType,
 } from '../../utils/getScenarioContent'
 import { ScenarioContent } from '../../types/common'
 
@@ -18,16 +19,27 @@ const baseNoPendingScenario = { hasPendingWeeks: false }
  */
 
 // Test getScenarioContent()
-describe('Retrieving the scenario content', () => {
-  it('returns the correct status description for the scenario', () => {
-    const pendingDetermination: ScenarioContent = getScenarioContent(pendingDeterminationScenario)
-    expect(pendingDetermination.statusContent.statusDescription).toBe('claim-status:pending-determination.description')
+// describe('Retrieving the scenario content', () => {
+//   // Test Claim Details
+//   it('returns the correct programType and extensionType', () => {})
+// })
 
-    const basePending: ScenarioContent = getScenarioContent(basePendingScenario)
-    expect(basePending.statusContent.statusDescription).toBe('claim-status:base-pending.description')
+// Test getClaimStatusDescripton()
+describe('Getting the Claim Status description', () => {
+  it('returns the correct description for the scenario', () => {
+    const pendingDetermination = getClaimStatusDescription(ScenarioType.PendingDetermination)
+    expect(pendingDetermination).toBe('claim-status:pending-determination.description')
 
-    const baseNoPending: ScenarioContent = getScenarioContent(baseNoPendingScenario)
-    expect(baseNoPending.statusContent.statusDescription).toBe('claim-status:base-no-pending.description')
+    const basePending = getClaimStatusDescription(ScenarioType.BasePending)
+    expect(basePending).toBe('claim-status:base-pending.description')
+
+    const baseNoPending = getClaimStatusDescription(ScenarioType.BaseNoPending)
+    expect(baseNoPending).toBe('claim-status:base-no-pending.description')
+  })
+  it('throws an error if given an unknown scenario', () => {
+    expect(() => {
+      getClaimStatusDescription('unknown')
+    }).toThrowError('Unknown Scenario Type')
   })
 })
 
