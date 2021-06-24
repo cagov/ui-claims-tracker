@@ -13,7 +13,7 @@ export const TransLine: React.FC<TransLineProps> = ({ i18nString, links = null }
     // be interporlated by <Trans>.
     /* eslint-disable jsx-a11y/anchor-has-content */
     /* eslint-disable react/self-closing-comp */
-    linkComponents = links.map((link, index) => <a href={link} key={index}></a>)
+    linkComponents = links.map((link) => <a href={link} key={link}></a>)
     /* eslint-enable jsx-a11y/anchor-has-content */
     /* eslint-enable react/self-closing-comp */
   }
