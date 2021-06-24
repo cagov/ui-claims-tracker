@@ -159,6 +159,22 @@ export function getClaimStatusDescription(scenarioType: ScenarioType): string {
 }
 
 /**
+ * Construct next steps content.
+ * Returns an array of i18n strings.
+ */
+export function buildNextSteps(scenarioType: ScenarioType, claimData: Claim): string[] {
+  const nextSteps = []
+  if (claimData.hasCertificationWeeksAvailable && scenarioType !== ScenarioType.BaseNoPending) {
+    if (claimData.hasPendingWeeks) {
+      nextSteps.push('claim-status:conditional-next-steps:certify-pending')
+    } else {
+      nextSteps.push('claim-status:conditional-next-steps:certify-no-pending')
+    }
+  }
+  return nextSteps
+}
+
+/**
  * Return scenario content.
  */
 export default function getScenarioContent(claimData: Claim): ScenarioContent {
@@ -166,6 +182,7 @@ export default function getScenarioContent(claimData: Claim): ScenarioContent {
   const scenarioType = getScenario(claimData)
 
   // Construct claim status content.
+  // @TODO: Remove placeholder default content
   const nextSteps = [
     'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
