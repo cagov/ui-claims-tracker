@@ -1,3 +1,4 @@
+// Type interfaces for API gateway result
 export interface PendingDetermination {
   determinationStatus?: null | undefined | string
 }
@@ -20,6 +21,7 @@ export interface Claim {
   claimDetails?: ClaimDetailsResult
 }
 
+// Type interfaces for Claim Status and Claim Details
 export interface ClaimStatusContent {
   statusDescription: string
   nextSteps?: string[]
