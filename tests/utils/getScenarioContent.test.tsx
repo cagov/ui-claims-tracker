@@ -105,6 +105,12 @@ describe('The base state (with no pending weeks) scenario', () => {
     const scenarioType: ScenarioType = getScenario(baseNoPendingScenarioEmpty)
     expect(scenarioType).toBe(ScenarioType.BaseNoPending)
   })
+
+  it('throws an error if no known combination is given', () => {
+    expect(() => {
+      getScenario({})
+    }).toThrowError('Unknown Scenario')
+  })
 })
 
 // Test getScenario(): error
