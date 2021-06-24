@@ -1,4 +1,11 @@
-import getScenarioContent, { getScenario, ScenarioType } from '../../utils/getScenarioContent'
+import getScenarioContent, {
+  getScenario,
+  mapProgramType,
+  programTypes,
+  ProgramTypeParts,
+  ScenarioType,
+  programTypeMapping,
+} from '../../utils/getScenarioContent'
 import { ScenarioContent } from '../../types/common'
 
 // Shared test constants for mock API gateway responses
@@ -94,5 +101,21 @@ describe('Getting the scenario', () => {
     expect(() => {
       getScenario({})
     }).toThrowError('Unknown Scenario')
+})
+
+// Test mapProgramType()
+describe('Converting ProgramType to user-facing strings', () => {
+  it('returns the correct string for each known ProgramType', () => {
+    for (const [id, map] of Object.entries(programTypeMapping)) {
+      const parts: ProgramTypeParts = mapProgramType(programTypes[id])
+      expect(parts.programType).toBe(map.programType)
+      expect(parts.extensionType).toBe(parts.extensionType)
+    }
+  })
+
+  it('throws an error if an unknown ProgramType is given', () => {
+    expect(() => {
+      mapProgramType('unknown')
+    }).toThrowError('Unknown Program Type')
   })
 })

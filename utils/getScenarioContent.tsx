@@ -6,6 +6,71 @@ export enum ScenarioType {
   BaseNoPending = 'Base state with no pending weeks',
 }
 
+export interface ProgramType {
+  [key: string]: string
+}
+
+export const programTypes: ProgramType = {
+  UI: 'UI',
+  PEUC: 'PEUC - Tier 1 Extension',
+  PEUX: 'PEUC - Tier 2 Extension',
+  PEUY: 'PEUC - Tier 2 Augmentation',
+  FEDED: 'FED-ED Extension',
+  TRA: 'TRA Basic Extension',
+  TRAAdditional: 'TRA Additional/Remedial Extension',
+  TE: 'Training Extension (TE)',
+  DUA: 'DUA',
+  PUA: 'PUA',
+}
+
+export interface ProgramTypeParts {
+  programType: string
+  extensionType: string
+}
+
+export const programTypeMapping = {
+  UI: {
+    programType: 'claim-details:program-type.ui',
+    extensionType: '',
+  },
+  PEUC: {
+    programType: 'claim-details:program-type.ui',
+    extensionType: 'claim-details:extension-type.peuc-1',
+  },
+  PEUX: {
+    programType: 'claim-details:program-type.ui',
+    extensionType: 'claim-details:extension-type.peuc-2',
+  },
+  PEUY: {
+    programType: 'claim-details:program-type.ui',
+    extensionType: 'claim-details:extension-type.peuc-2-augmentation',
+  },
+  FEDED: {
+    programType: 'claim-details:program-type.ui',
+    extensionType: 'claim-details:extension-type.fed-ed',
+  },
+  TRA: {
+    programType: 'claim-details:program-type.ui',
+    extensionType: 'claim-details:extension-type.tra',
+  },
+  TRAAdditional: {
+    programType: 'claim-details:program-type.ui',
+    extensionType: 'claim-details:extension-type.tra-additional',
+  },
+  TE: {
+    programType: 'claim-details:program-type.ui',
+    extensionType: 'claim-details:extension-type.te',
+  },
+  DUA: {
+    programType: 'claim-details:program-type.dua',
+    extensionType: '',
+  },
+  PUA: {
+    programType: 'claim-details:program-type.pua',
+    extensionType: '',
+  },
+}
+
 /**
  * Identify the correct scenario to display.
  *
@@ -38,10 +103,25 @@ export function getScenario(claimData: Claim): ScenarioType {
 }
 
 /**
+ * Map the ProgramType to user-facing translation keys.
+ *
+ * @param {string} programType
+ * @returns {Object}
+ */
+export function mapProgramType(programType: string): ProgramTypeParts {
+  for (const [id, map] of Object.entries(programTypeMapping)) {
+    if (programType === programTypes[id]) {
+      return map
+    }
+  }
+  // If no known mapping is found, throw an error.
+  throw new Error('Unknown Program Type')
+}
+
+/**
  * Return scenario content.
  *
  * @param {Object} claim
- * @param {enum} scenarioType
  * @returns {Object}
  */
 export default function getScenarioContent(claimData: Claim): ScenarioContent {
