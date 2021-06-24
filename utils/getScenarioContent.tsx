@@ -49,6 +49,7 @@ export default function getScenarioContent(claimData: Claim): ScenarioContent {
   const scenarioType = getScenario(claimData)
 
   // Construct claim status content.
+  // This sets an i18n string.
   let statusDescription = ''
   if (scenarioType === ScenarioType.PendingDetermination) {
     statusDescription = 'claim-status:pending-determination.description'
