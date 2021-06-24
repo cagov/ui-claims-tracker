@@ -161,13 +161,15 @@ export default function getScenarioContent(claimData: Claim): ScenarioContent {
   }
 
   if (claimData.claimDetails) {
-    detailsContent.programType = claimData.claimDetails.programType
     detailsContent.benefitYear = `${claimData.claimDetails.benefitYearStartDate} - ${claimData.claimDetails.benefitYearEndDate}`
     detailsContent.claimBalance = claimData.claimDetails.claimBalance
     detailsContent.weeklyBenefitAmount = claimData.claimDetails.weeklyBenefitAmount
     detailsContent.lastPaymentIssued = claimData.claimDetails.lastPaymentIssued
-    // @TODO
-    // detailsContent.extensionType = ''
+
+    // Set programType and extensionType.
+    const parts: ProgramTypeParts = mapProgramType(claimData.claimDetails.programType)
+    detailsContent.programType = parts.programType
+    detailsContent.extensionType = parts.extensionType
   }
 
   const content: ScenarioContent = {
