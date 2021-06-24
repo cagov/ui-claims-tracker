@@ -16,4 +16,5 @@ const Template: Story<HomeProps> = (args) => <Home {...args} />
 export const Page = Template.bind({})
 Page.args = {
   scenarioContent: MainStories.Main.args as ScenarioContent,
+  errorCode: null,
 }
