@@ -7,5 +7,9 @@
   },
   "base-no-pending": {
     "description": "There are no pending issues at this time."
+  },
+  "conditional-next-steps": {
+    "certify-no-pending": "Keep certifying as long as you need benefits.",
+    "certify-pending": "Keep certifying as long as you need benefits, so your payments are not delayed further."
   }
 }
