@@ -119,6 +119,28 @@ export function mapProgramType(programType: string): ProgramTypeParts {
 }
 
 /**
+ * Get Claim Status description content.
+ *
+ * This returns an i18n string.
+ *
+ * @param {Object} scenarioType
+ * @returns {string}
+ */
+export function getClaimStatusDescription(scenarioType: ScenarioType): string {
+  switch (scenarioType) {
+    case ScenarioType.PendingDetermination:
+      return 'claim-status:pending-determination.description'
+    case ScenarioType.BasePending:
+      return 'claim-status:base-pending.description'
+    case ScenarioType.BaseNoPending:
+      return 'claim-status:base-no-pending.description'
+  }
+
+  // If an unknown Scenario Type is given, throw an error.
+  throw new Error('Unknown Scenario Type')
+}
+
+/**
  * Return scenario content.
  *
  * @param {Object} claim
@@ -129,23 +151,13 @@ export default function getScenarioContent(claimData: Claim): ScenarioContent {
   const scenarioType = getScenario(claimData)
 
   // Construct claim status content.
-  // This sets an i18n string.
-  let statusDescription = ''
-  if (scenarioType === ScenarioType.PendingDetermination) {
-    statusDescription = 'claim-status:pending-determination.description'
-  } else if (scenarioType === ScenarioType.BasePending) {
-    statusDescription = 'claim-status:base-pending.description'
-  } else {
-    statusDescription = 'claim-status:base-no-pending.description'
-  }
-
   const nextSteps = [
     'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
   ]
 
   const statusContent: ClaimStatusContent = {
-    statusDescription: statusDescription,
+    statusDescription: getClaimStatusDescription(scenarioType),
     nextSteps: nextSteps,
   }
 
