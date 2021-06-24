@@ -1,4 +1,8 @@
-import { Claim, ClaimDetailsContent, ClaimStatusContent, ScenarioContent } from '../types/common'
+/**
+ * Note: Some of the structure of this file is expected to change when we implement
+ * an alternate API response validation method. See #150
+ */
+import { Claim, ClaimDetailsContent, ClaimDetailsResult, ClaimStatusContent, ScenarioContent } from '../types/common'
 
 export enum ScenarioType {
   PendingDetermination = 'Pending determination scenario',
@@ -73,9 +77,6 @@ export const programTypeMapping = {
 
 /**
  * Identify the correct scenario to display.
- *
- * @param {Qbject} claim
- * @returns {Object}
  */
 export function getScenario(claimData: Claim): ScenarioType {
   // The pending determination scenario: if claimData contains any pendingDetermination
@@ -102,9 +103,7 @@ export function getScenario(claimData: Claim): ScenarioType {
 
 /**
  * Map the ProgramType to user-facing translation keys.
- *
- * @param {string} programType
- * @returns {Object}
+ *  This returns i18n strings.
  */
 export function mapProgramType(programType: string): ProgramTypeParts {
   for (const [id, map] of Object.entries(programTypeMapping)) {
@@ -117,12 +116,33 @@ export function mapProgramType(programType: string): ProgramTypeParts {
 }
 
 /**
+ * Constrtuct the benefit year string.
+ */
+export function buildBenefitYear(start: string, end: string): string {
+  return `${start} - ${end}`
+}
+
+/**
+ * Get Claim Details content.
+ */
+export function getClaimDetails(rawDetails: ClaimDetailsResult): ClaimDetailsContent {
+  // Get programType and extensionType.
+  const parts: ProgramTypeParts = mapProgramType(rawDetails.programType)
+  const benefitYear = buildBenefitYear(rawDetails.benefitYearStartDate, rawDetails.benefitYearEndDate)
+
+  return {
+    programType: parts.programType,
+    benefitYear: benefitYear,
+    claimBalance: rawDetails.claimBalance,
+    weeklyBenefitAmount: rawDetails.weeklyBenefitAmount,
+    lastPaymentIssued: rawDetails.lastPaymentIssued,
+    extensionType: parts.extensionType,
+  }
+}
+
+/**
  * Get Claim Status description content.
- *
  * This returns an i18n string.
- *
- * @param {Object} scenarioType
- * @returns {string}
  */
 export function getClaimStatusDescription(scenarioType: ScenarioType): string {
   switch (scenarioType) {
@@ -140,9 +160,6 @@ export function getClaimStatusDescription(scenarioType: ScenarioType): string {
 
 /**
  * Return scenario content.
- *
- * @param {Object} claim
- * @returns {Object}
  */
 export default function getScenarioContent(claimData: Claim): ScenarioContent {
   // Get the scenario type.
@@ -161,7 +178,7 @@ export default function getScenarioContent(claimData: Claim): ScenarioContent {
 
   // Construct claim details content.
   // @TODO: Remove placeholder default content
-  const detailsContent: ClaimDetailsContent = {
+  let detailsContent: ClaimDetailsContent = {
     programType: 'Unemployment Insurance (UI)',
     benefitYear: '3/21/2020 - 3/20/2021',
     claimBalance: '$0.00',
@@ -171,15 +188,7 @@ export default function getScenarioContent(claimData: Claim): ScenarioContent {
   }
 
   if (claimData.claimDetails) {
-    detailsContent.benefitYear = `${claimData.claimDetails.benefitYearStartDate} - ${claimData.claimDetails.benefitYearEndDate}`
-    detailsContent.claimBalance = claimData.claimDetails.claimBalance
-    detailsContent.weeklyBenefitAmount = claimData.claimDetails.weeklyBenefitAmount
-    detailsContent.lastPaymentIssued = claimData.claimDetails.lastPaymentIssued
-
-    // Set programType and extensionType.
-    const parts: ProgramTypeParts = mapProgramType(claimData.claimDetails.programType)
-    detailsContent.programType = parts.programType
-    detailsContent.extensionType = parts.extensionType
+    detailsContent = getClaimDetails(claimData.claimDetails)
   }
 
   const content: ScenarioContent = {
