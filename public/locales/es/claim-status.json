@@ -7,5 +7,9 @@
   },
   "base-no-pending": {
     "description": "No hay asuntos pendientes en este momento."
+  },
+  "conditional-next-steps": {
+    "certify-no-pending": "<0>Siga certificando</0> mientras necesite beneficios.",
+    "certify-pending": "<0>Siga certificando</0> mientras necesite beneficios, para que sus pagos no se retrasen más."
   }
 }
