@@ -19,7 +19,7 @@ import { useRouter } from 'next/router'
 
 export interface HomeProps {
   scenarioContent: ScenarioContent
-  errorCode?: number
+  errorCode?: number | null
   loading: boolean
 }
 
