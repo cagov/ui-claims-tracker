@@ -18,7 +18,7 @@ import { ScenarioContent } from '../types/common'
 
 export interface HomeProps {
   scenarioContent: ScenarioContent
-  errorCode?: number
+  errorCode?: number | null
   loading: boolean
 }
 
