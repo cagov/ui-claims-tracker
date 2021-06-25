@@ -1,5 +1,6 @@
 import getScenarioContent, {
   buildBenefitYear,
+  buildConditionalNextSteps,
   getClaimDetails,
   getScenario,
   getClaimStatusDescription,
@@ -166,5 +167,61 @@ describe('Constructing the Claim Details object', () => {
     }
     const claimDetails = getClaimDetails(rawDetails)
     expect(claimDetails).toStrictEqual(expected)
+  })
+})
+
+// Test buildConditionalNextSteps(): conditional next steps
+describe('Conditional Next Steps', () => {
+  it('are returned when there are certification weeks left', () => {
+    // Scenario type can be anything except BaseNoPending.
+    const scenarioType = ScenarioType.BasePending
+    const claimData = {
+      hasCertificationWeeksAvailable: true,
+    }
+    const nextSteps: string[] = buildConditionalNextSteps(scenarioType, claimData)
+    expect(nextSteps).toStrictEqual(['claim-status:conditional-next-steps:certify-no-pending'])
+  })
+
+  it('are returned when there are certification weeks left and pending weeks left', () => {
+    // Scenario type can be anything except BaseNoPending.
+    const scenarioType = ScenarioType.BasePending
+    const claimData = {
+      hasCertificationWeeksAvailable: true,
+      hasPendingWeeks: true,
+    }
+    const nextSteps: string[] = buildConditionalNextSteps(scenarioType, claimData)
+    expect(nextSteps).toStrictEqual(['claim-status:conditional-next-steps:certify-pending'])
+  })
+
+  it('are not returned when there are no certification weeks left', () => {
+    // Scenario type can be anything except BaseNoPending.
+    const scenarioType = ScenarioType.BasePending
+    const claimData = {
+      hasCertificationWeeksAvailable: false,
+      hasPendingWeeks: null,
+    }
+    const nextSteps: string[] = buildConditionalNextSteps(scenarioType, claimData)
+    expect(nextSteps).toStrictEqual([])
+  })
+
+  it('are not returned when there are no certification weeks left, regardless of pending weeks', () => {
+    // Scenario type can be anything except BaseNoPending.
+    const scenarioType = ScenarioType.BasePending
+    const claimData = {
+      hasCertificationWeeksAvailable: false,
+      hasPendingWeeks: true,
+    }
+    const nextSteps: string[] = buildConditionalNextSteps(scenarioType, claimData)
+    expect(nextSteps).toStrictEqual([])
+  })
+
+  it('are not returned if the scenario is Base State (with no pending weeks)', () => {
+    const scenarioType = ScenarioType.BaseNoPending
+    const claimData = {
+      hasCertificationWeeksAvailable: true,
+      hasPendingWeeks: true,
+    }
+    const nextSteps: string[] = buildConditionalNextSteps(scenarioType, claimData)
+    expect(nextSteps).toStrictEqual([])
   })
 })

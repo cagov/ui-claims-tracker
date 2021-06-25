@@ -159,10 +159,10 @@ export function getClaimStatusDescription(scenarioType: ScenarioType): string {
 }
 
 /**
- * Construct next steps content.
+ * Construct conditional next steps content.
  * Returns an array of i18n strings.
  */
-export function buildNextSteps(scenarioType: ScenarioType, claimData: Claim): string[] {
+export function buildConditionalNextSteps(scenarioType: ScenarioType, claimData: Claim): string[] {
   const nextSteps = []
   if (claimData.hasCertificationWeeksAvailable && scenarioType !== ScenarioType.BaseNoPending) {
     if (claimData.hasPendingWeeks) {
