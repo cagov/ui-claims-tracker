@@ -179,7 +179,10 @@ export function buildConditionalNextSteps(scenarioType: ScenarioType, claimData:
         links: [urls['edd-ui-certify']],
       })
     } else {
-      nextSteps.push({ i18nString: 'claim-status:conditional-next-steps:certify-no-pending' })
+      nextSteps.push({
+        i18nString: 'claim-status:conditional-next-steps:certify-no-pending',
+        links: [urls['edd-ui-certify']],
+      })
     }
   }
   return nextSteps

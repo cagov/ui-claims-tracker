@@ -11,6 +11,7 @@ import getScenarioContent, {
   ScenarioType,
 } from '../../utils/getScenarioContent'
 import { ScenarioContent } from '../../types/common'
+import urls from '../../public/urls.json'
 
 // Shared test constants for mock API gateway responses
 const pendingDeterminationScenario = { pendingDetermination: ['temporary text'] }
@@ -178,8 +179,14 @@ describe('Conditional Next Steps', () => {
     const claimData = {
       hasCertificationWeeksAvailable: true,
     }
+    const certifyNoPending: NextStep[] = [
+      {
+        i18nString: 'claim-status:conditional-next-steps:certify-no-pending',
+        links: [urls['edd-ui-certify']],
+      },
+    ]
     const nextSteps: string[] = buildConditionalNextSteps(scenarioType, claimData)
-    expect(nextSteps).toStrictEqual(['claim-status:conditional-next-steps:certify-no-pending'])
+    expect(nextSteps).toStrictEqual(certifyNoPending)
   })
 
   it('are returned when there are certification weeks left and pending weeks left', () => {
@@ -189,8 +196,14 @@ describe('Conditional Next Steps', () => {
       hasCertificationWeeksAvailable: true,
       hasPendingWeeks: true,
     }
+    const certifyPending: NextStep[] = [
+      {
+        i18nString: 'claim-status:conditional-next-steps:certify-pending',
+        links: [urls['edd-ui-certify']],
+      },
+    ]
     const nextSteps: string[] = buildConditionalNextSteps(scenarioType, claimData)
-    expect(nextSteps).toStrictEqual(['claim-status:conditional-next-steps:certify-pending'])
+    expect(nextSteps).toStrictEqual(certifyPending)
   })
 
   it('are not returned when there are no certification weeks left', () => {
