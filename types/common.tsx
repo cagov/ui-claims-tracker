@@ -23,6 +23,11 @@ export interface Claim {
 }
 
 // Type interfaces for Claim Status and Claim Details
+export interface NextStep {
+  i18nString: string
+  links?: string[]
+}
+
 export interface ClaimStatusContent {
   statusDescription: string // This is an i18n string
   nextSteps?: string[]

@@ -2,7 +2,16 @@
  * Note: Some of the structure of this file is expected to change when we implement
  * an alternate API response validation method. See #150
  */
-import { Claim, ClaimDetailsContent, ClaimDetailsResult, ClaimStatusContent, ScenarioContent } from '../types/common'
+import {
+  Claim,
+  ClaimDetailsContent,
+  ClaimDetailsResult,
+  ClaimStatusContent,
+  NextStep,
+  ScenarioContent,
+} from '../types/common'
+
+import { links as linkData } from '../public/links'
 
 export enum ScenarioType {
   PendingDetermination = 'Pending determination scenario',
@@ -160,15 +169,18 @@ export function getClaimStatusDescription(scenarioType: ScenarioType): string {
 
 /**
  * Construct conditional next steps content.
- * Returns an array of i18n strings.
+ * Returns an array of NextStep objects, which include i18n strings.
  */
-export function buildConditionalNextSteps(scenarioType: ScenarioType, claimData: Claim): string[] {
-  const nextSteps = []
+export function buildConditionalNextSteps(scenarioType: ScenarioType, claimData: Claim): NextStep[] {
+  const nextSteps: NextStep[] = []
   if (claimData.hasCertificationWeeksAvailable && scenarioType !== ScenarioType.BaseNoPending) {
     if (claimData.hasPendingWeeks) {
-      nextSteps.push('claim-status:conditional-next-steps:certify-pending')
+      nextSteps.push({
+        i18nString: 'claim-status:conditional-next-steps:certify-pending',
+        links: [linkData['edd-ui-certify']],
+      })
     } else {
-      nextSteps.push('claim-status:conditional-next-steps:certify-no-pending')
+      nextSteps.push({ i18nString: 'claim-status:conditional-next-steps:certify-no-pending' })
     }
   }
   return nextSteps
