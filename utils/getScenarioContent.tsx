@@ -93,12 +93,12 @@ export function getScenario(claimData: Claim): ScenarioType {
   if (claimData.pendingDetermination && claimData.pendingDetermination.length > 0) {
     return ScenarioType.PendingDetermination
   }
-  // The generic pending scenario: if there are no pendingDetermination objects
+  // The base state (with pending weeks) scenario: if there are no pendingDetermination objects
   // AND hasPendingWeeks is true
   else if (claimData.hasPendingWeeks === true) {
     return ScenarioType.BasePending
   }
-  // The generic "all clear"/base state scenario: if there are no pendingDetermination objects
+  // The base state (with no pending weeks) scenario: if there are no pendingDetermination objects
   // and hasPendingWeeks is false
   else if (claimData.hasPendingWeeks === false) {
     return ScenarioType.BaseNoPending
