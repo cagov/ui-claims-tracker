@@ -10,8 +10,7 @@ import {
   NextStep,
   ScenarioContent,
 } from '../types/common'
-
-import { links as linkData } from '../public/links'
+import urls from '../public/urls.json'
 
 export enum ScenarioType {
   PendingDetermination = 'Pending determination scenario',
@@ -177,7 +176,7 @@ export function buildConditionalNextSteps(scenarioType: ScenarioType, claimData:
     if (claimData.hasPendingWeeks) {
       nextSteps.push({
         i18nString: 'claim-status:conditional-next-steps:certify-pending',
-        links: [linkData['edd-ui-certify']],
+        links: [urls['edd-ui-certify']],
       })
     } else {
       nextSteps.push({ i18nString: 'claim-status:conditional-next-steps:certify-no-pending' })
