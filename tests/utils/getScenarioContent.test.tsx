@@ -16,7 +16,8 @@ import urls from '../../public/urls.json'
 // Shared test constants for mock API gateway responses
 const pendingDeterminationScenario = { pendingDetermination: ['temporary text'] }
 const basePendingScenario = { hasPendingWeeks: true }
-const baseNoPendingScenario = { hasPendingWeeks: false }
+const baseNoPendingActiveScenario = { hasPendingWeeks: false, claimDetails: { monetaryStatus: 'active' } }
+const baseNoPendingInactiveScenario = { hasPendingWeeks: false, claimDetails: { monetaryStatus: 'inactive' } }
 
 /**
  * Begin tests
@@ -33,8 +34,11 @@ describe('Getting the Claim Status description', () => {
     const basePending = getClaimStatusDescription(ScenarioType.BasePending)
     expect(basePending).toBe('claim-status:base-pending.description')
 
-    const baseNoPending = getClaimStatusDescription(ScenarioType.BaseNoPending)
-    expect(baseNoPending).toBe('claim-status:base-no-pending.description')
+    const baseNoPendingActive = getClaimStatusDescription(ScenarioType.BaseNoPendingActive)
+    expect(baseNoPendingActive).toBe('claim-status:base-no-pending-active.description')
+
+    const baseNoPendingInactive = getClaimStatusDescription(ScenarioType.BaseNoPendingInactive)
+    expect(baseNoPendingInactive).toBe('claim-status:base-no-pending-inactive.description')
   })
 
   it('throws an error if given an unknown scenario', () => {
@@ -88,23 +92,85 @@ describe('The base state (with pending weeks) scenario', () => {
   })
 })
 
-// Test getScenario(): base state with no pending weeks scenario
-describe('The base state (with no pending weeks) scenario', () => {
-  it('is returned when there are no pending weeks', () => {
-    const scenarioType: ScenarioType = getScenario(baseNoPendingScenario)
-    expect(scenarioType).toBe(ScenarioType.BaseNoPending)
+// Test getScenario(): base state with no pending weeks; active claim scenario
+describe('The base state (with no pending weeks); active claim scenario', () => {
+  it('is returned when there are no pending weeks and there is an active claim', () => {
+    const scenarioType: ScenarioType = getScenario(baseNoPendingActiveScenario)
+    expect(scenarioType).toBe(ScenarioType.BaseNoPendingActive)
   })
 
-  it('is returned when there are no pending weeks and pendingDetermination is null', () => {
-    const baseNoPendingScenarioNull = { hasPendingWeeks: false, pendingDetermination: null }
-    const scenarioType: ScenarioType = getScenario(baseNoPendingScenarioNull)
-    expect(scenarioType).toBe(ScenarioType.BaseNoPending)
+  it('is returned when there are no pending weeks and there is an active claim and pendingDetermination is null', () => {
+    const baseNoPendingActiveScenarioNull = {
+      hasPendingWeeks: false,
+      claimDetails: { monetaryStatus: 'active' },
+      pendingDetermination: null,
+    }
+    const scenarioType: ScenarioType = getScenario(baseNoPendingActiveScenarioNull)
+    expect(scenarioType).toBe(ScenarioType.BaseNoPendingActive)
   })
 
-  it('is returned when there are no pending weeks and pendingDetermination is an empty array', () => {
-    const baseNoPendingScenarioEmpty = { hasPendingWeeks: false, pendingDetermination: [] }
-    const scenarioType: ScenarioType = getScenario(baseNoPendingScenarioEmpty)
-    expect(scenarioType).toBe(ScenarioType.BaseNoPending)
+  it('is returned when there are no pending weeks and there is an active claim and pendingDetermination is an empty array', () => {
+    const baseNoPendingActiveScenarioEmpty = {
+      hasPendingWeeks: false,
+      claimDetails: { monetaryStatus: 'active' },
+      pendingDetermination: [],
+    }
+    const scenarioType: ScenarioType = getScenario(baseNoPendingActiveScenarioEmpty)
+    expect(scenarioType).toBe(ScenarioType.BaseNoPendingActive)
+  })
+})
+
+// Test getScenario(): base state with no pending weeks; Inactive claim scenario
+describe('The base state (with no pending weeks); Inactive claim scenario', () => {
+  it('is returned when there are no pending weeks and monetaryStatus is set to "inactive"', () => {
+    const scenarioType: ScenarioType = getScenario(baseNoPendingInactiveScenario)
+    expect(scenarioType).toBe(ScenarioType.BaseNoPendingInactive)
+  })
+
+  it('is returned when there are no pending weeks and monetaryStatus is set to null', () => {
+    const inactiveScenario = {
+      hasPendingWeeks: false,
+      pendingDetermination: null,
+      claimDetails: {
+        monetaryStatus: null,
+      },
+    }
+    const scenarioType: ScenarioType = getScenario(inactiveScenario)
+    expect(scenarioType).toBe(ScenarioType.BaseNoPendingInactive)
+  })
+
+  it('is returned when there are no pending weeks and monetaryStatus is set to undefined', () => {
+    const inactiveScenario = {
+      hasPendingWeeks: false,
+      pendingDetermination: null,
+      claimDetails: {
+        monetaryStatus: undefined,
+      },
+    }
+    const scenarioType: ScenarioType = getScenario(inactiveScenario)
+    expect(scenarioType).toBe(ScenarioType.BaseNoPendingInactive)
+  })
+
+  it('is returned when there are no pending weeks and monetaryStatus is not set', () => {
+    const inactiveScenario = {
+      hasPendingWeeks: false,
+      pendingDetermination: null,
+      claimDetails: {
+        programType: 'UI',
+      },
+    }
+    const scenarioType: ScenarioType = getScenario(inactiveScenario)
+    expect(scenarioType).toBe(ScenarioType.BaseNoPendingInactive)
+  })
+
+  it('errors if there is no claimDetails object', () => {
+    const baseNoPendingActiveScenarioNull = {
+      hasPendingWeeks: false,
+      pendingDetermination: null,
+    }
+    expect(() => {
+      getScenario(baseNoPendingActiveScenarioNull)
+    }).toThrowError('Missing claim details')
   })
 })
 
@@ -174,7 +240,7 @@ describe('Constructing the Claim Details object', () => {
 // Test buildConditionalNextSteps(): conditional next steps
 describe('Conditional Next Steps', () => {
   it('are returned when there are certification weeks left', () => {
-    // Scenario type can be anything except BaseNoPending.
+    // Scenario type can be anything except BaseNoPendingInactive.
     const scenarioType = ScenarioType.BasePending
     const claimData = {
       hasCertificationWeeksAvailable: true,
@@ -190,7 +256,7 @@ describe('Conditional Next Steps', () => {
   })
 
   it('are returned when there are certification weeks left and pending weeks left', () => {
-    // Scenario type can be anything except BaseNoPending.
+    // Scenario type can be anything except BaseNoPendingInactive.
     const scenarioType = ScenarioType.BasePending
     const claimData = {
       hasCertificationWeeksAvailable: true,
@@ -207,7 +273,7 @@ describe('Conditional Next Steps', () => {
   })
 
   it('are not returned when there are no certification weeks left', () => {
-    // Scenario type can be anything except BaseNoPending.
+    // Scenario type can be anything except BaseNoPendingInactive.
     const scenarioType = ScenarioType.BasePending
     const claimData = {
       hasCertificationWeeksAvailable: false,
@@ -218,7 +284,7 @@ describe('Conditional Next Steps', () => {
   })
 
   it('are not returned when there are no certification weeks left, regardless of pending weeks', () => {
-    // Scenario type can be anything except BaseNoPending.
+    // Scenario type can be anything except BaseNoPendingInactive.
     const scenarioType = ScenarioType.BasePending
     const claimData = {
       hasCertificationWeeksAvailable: false,
@@ -228,8 +294,8 @@ describe('Conditional Next Steps', () => {
     expect(nextSteps).toStrictEqual([])
   })
 
-  it('are not returned if the scenario is Base State (with no pending weeks)', () => {
-    const scenarioType = ScenarioType.BaseNoPending
+  it('are not returned if the scenario is Base State (with no pending weeks) with inactive claim', () => {
+    const scenarioType = ScenarioType.BaseNoPendingInactive
     const claimData = {
       hasCertificationWeeksAvailable: true,
       hasPendingWeeks: true,

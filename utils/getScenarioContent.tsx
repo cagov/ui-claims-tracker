@@ -15,7 +15,8 @@ import urls from '../public/urls.json'
 export enum ScenarioType {
   PendingDetermination = 'Pending determination scenario',
   BasePending = 'Base state with pending weeks',
-  BaseNoPending = 'Base state with no pending weeks',
+  BaseNoPendingActive = 'Base state with no pending weeks; Active claim',
+  BaseNoPendingInactive = 'Base state with no pending weeks; Inactive claim',
 }
 
 export interface ProgramType {
@@ -93,18 +94,31 @@ export function getScenario(claimData: Claim): ScenarioType {
   if (claimData.pendingDetermination && claimData.pendingDetermination.length > 0) {
     return ScenarioType.PendingDetermination
   }
-  // The base state (with pending weeks) scenario: if there are no pendingDetermination objects
-  // AND hasPendingWeeks is true
+  // The base state (with pending weeks) scenario:
+  // - there are no pendingDetermination objects AND
+  // - hasPendingWeeks is true
   else if (claimData.hasPendingWeeks === true) {
     return ScenarioType.BasePending
-  }
-  // The base state (with no pending weeks) scenario: if there are no pendingDetermination objects
-  // and hasPendingWeeks is false
-  else if (claimData.hasPendingWeeks === false) {
-    return ScenarioType.BaseNoPending
-  }
-  // This is unexpected
-  else {
+  } else if (claimData.hasPendingWeeks === false) {
+    if (claimData.claimDetails) {
+      // The base state (with no pending weeks); active claim scenario:
+      // - there are no pendingDetermination objects AND
+      // - hasPendingWeeks is false AND
+      // - monetaryStatus is "active"
+      if (claimData.claimDetails.monetaryStatus && claimData.claimDetails.monetaryStatus.toLowerCase() === 'active') {
+        return ScenarioType.BaseNoPendingActive
+      }
+      // The base state (with no pending weeks); Inactive claim scenario:
+      // - there are no pendingDetermination objects AND
+      // - hasPendingWeeks is false AND
+      // - monetaryStatus is not "active"
+      else {
+        return ScenarioType.BaseNoPendingInactive
+      }
+    } else {
+      throw new Error('Missing claim details')
+    }
+  } else {
     throw new Error('Unknown Scenario')
   }
 }
@@ -158,8 +172,10 @@ export function getClaimStatusDescription(scenarioType: ScenarioType): string {
       return 'claim-status:pending-determination.description'
     case ScenarioType.BasePending:
       return 'claim-status:base-pending.description'
-    case ScenarioType.BaseNoPending:
-      return 'claim-status:base-no-pending.description'
+    case ScenarioType.BaseNoPendingActive:
+      return 'claim-status:base-no-pending-active.description'
+    case ScenarioType.BaseNoPendingInactive:
+      return 'claim-status:base-no-pending-inactive.description'
   }
 
   // If an unknown Scenario Type is given, throw an error.
@@ -172,7 +188,7 @@ export function getClaimStatusDescription(scenarioType: ScenarioType): string {
  */
 export function buildConditionalNextSteps(scenarioType: ScenarioType, claimData: Claim): NextStep[] {
   const nextSteps: NextStep[] = []
-  if (claimData.hasCertificationWeeksAvailable && scenarioType !== ScenarioType.BaseNoPending) {
+  if (claimData.hasCertificationWeeksAvailable && scenarioType !== ScenarioType.BaseNoPendingInactive) {
     if (claimData.hasPendingWeeks) {
       nextSteps.push({
         i18nString: 'claim-status:conditional-next-steps:certify-pending',

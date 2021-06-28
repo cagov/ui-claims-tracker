@@ -5,8 +5,11 @@
   "base-pending": {
     "description": "Sus pagos están pendientes de revisión adicional."
   },
-  "base-no-pending": {
+  "base-no-pending-active": {
     "description": "No hay asuntos pendientes en este momento."
+  },
+  "base-no-pending-inactive": {
+    "description": "Su reclamo está activo y no hay problemas pendientes en este momento."
   },
   "conditional-next-steps": {
     "certify-no-pending": "<0>Siga certificando</0> mientras necesite beneficios.",

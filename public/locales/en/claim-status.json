@@ -5,7 +5,10 @@
   "base-pending": {
     "description": "Your payments are pending further review."
   },
-  "base-no-pending": {
+  "base-no-pending-active": {
+    "description": "Your claim is active and there are no pending issues at this time."
+  },
+  "base-no-pending-inactive": {
     "description": "There are no pending issues at this time."
   },
   "conditional-next-steps": {
