@@ -10,6 +10,6 @@ const Template: Story<TransLineProps> = (args) => <TransLineComponent {...args} 
 
 export const TransLine = Template.bind({})
 TransLine.args = {
-  i18nString: 'work-in-progress.message',
+  i18nKey: 'work-in-progress.message',
   links: ['https://navapbc.com', 'https://edd.ca.gov'],
 }
