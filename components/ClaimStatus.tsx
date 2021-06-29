@@ -11,12 +11,9 @@ export interface ClaimStatusProps extends ClaimStatusContent {
 export const ClaimStatus: React.FC<ClaimStatusProps> = ({ loading = false, statusDescription, nextSteps }) => {
   const { t } = useTranslation(['common', 'claim-status'])
 
-  return (
-    <div className="claim-status">
-      <h2>{t('claim-status.title')}</h2>
-      <div className="pending-status">
-        <TextLine loading={loading} text={t(statusDescription)} />
-      </div>
+  let nextStepsElement: JSX.Element[] = []
+  if (nextSteps) {
+    nextStepsElement = (
       <div className="status-box">
         <div className="topbar">
           <h3 className="next-steps">{t('claim-status.next-steps')}</h3>
@@ -25,6 +22,16 @@ export const ClaimStatus: React.FC<ClaimStatusProps> = ({ loading = false, statu
           <NextSteps loading={loading} nextSteps={nextSteps} />
         </div>
       </div>
+    )
+  }
+
+  return (
+    <div className="claim-status">
+      <h2>{t('claim-status.title')}</h2>
+      <div className="pending-status">
+        <TextLine loading={loading} text={t(statusDescription)} />
+      </div>
+      {nextStepsElement}
     </div>
   )
 }

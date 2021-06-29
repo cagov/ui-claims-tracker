@@ -13,7 +13,7 @@ import { Footer } from '../components/Footer'
 import { WorkInProgress } from '../components/WorkInProgress'
 
 import queryApiGateway from '../utils/queryApiGateway'
-import getScenarioContent from '../utils/getScenarioContent'
+import getScenarioContent, { ScenarioType } from '../utils/getScenarioContent'
 import { ScenarioContent } from '../types/common'
 import { useRouter } from 'next/router'
 
@@ -73,6 +73,21 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
 
   // Run business logic to get content for the current scenario.
   const scenarioContent = getScenarioContent(claimData)
+
+  console.log(ScenarioType)
+  console.log(Object.values(ScenarioType))
+  const mapping = Object.keys(ScenarioType)
+    .filter((value) => isNaN(Number(value)) === false)
+    .map((key) => ScenarioType[key])
+  console.log(mapping)
+  // const StringIsNumber = (value) => isNaN(Number(value)) === false
+
+  // // Turn enum into array
+  // function ToArray(enumme) {
+  //   return Object.keys(enumme)
+  //     .filter(StringIsNumber)
+  //     .map((key) => enumme[key])
+  // }
 
   // Return Props.
   return {

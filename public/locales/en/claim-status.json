@@ -3,7 +3,8 @@
     "description": "We need to confirm your eligibility for benefits."
   },
   "base-pending": {
-    "description": "Your payments are pending further review."
+    "description": "Your payments are pending further review.",
+    "next-step": "Check your UI Online inbox for the latest updates."
   },
   "base-no-pending-active": {
     "description": "Your claim is active and there are no pending issues at this time."
@@ -13,6 +14,7 @@
   },
   "conditional-next-steps": {
     "certify-no-pending": "<0>Keep certifying</0> as long as you need benefits.",
-    "certify-pending": "<0>Keep certifying</0> as long as you need benefits, so your payments are not delayed further."
+    "certify-pending": "<0>Keep certifying</0> as long as you need benefits, so your payments are not delayed further.",
+    "contact-info": "Make sure we have your current phone number and email address."
   }
 }

@@ -116,10 +116,12 @@ export function getScenario(claimData: Claim): ScenarioType {
         return ScenarioType.BaseNoPendingInactive
       }
     } else {
-      throw new Error('Missing claim details')
+      return ScenarioType.BaseNoPendingInactive
+      // throw new Error('Missing claim details')
     }
   } else {
-    throw new Error('Unknown Scenario')
+    // throw new Error('Unknown Scenario')
+    return ScenarioType.BaseNoPendingInactive
   }
 }
 
@@ -205,6 +207,43 @@ export function buildConditionalNextSteps(scenarioType: ScenarioType, claimData:
 }
 
 /**
+ * Construct next steps content for the scenario type.
+ * Returns an array of NextStep objects, which include i18n strings.
+ */
+export function buildScenarioNextSteps(scenarioType: ScenarioType, claimData: Claim): NextStep[] {
+  const nextSteps: NextStep[] = []
+  if (scenarioType === ScenarioType.BasePending) {
+    nextSteps.push({
+      i18nString: 'claim-status:base-pending:next-step',
+    })
+    nextSteps.push({
+      i18nString: 'claim-status:conditional-next-steps:contact-info',
+      links: [urls['edd-faq-bpo']],
+    })
+  }
+  return nextSteps
+}
+
+export function buildClaimStatusContent(scenarioType: ScenarioType, claimData: Claim): ClaimDetailsContent {
+  const statusContent: ClaimStatusContent = {
+    statusDescription: getClaimStatusDescription(scenarioType),
+  }
+
+  let nextSteps: NextStep[] = buildConditionalNextSteps(scenarioType, claimData)
+  if (nextSteps && nextSteps.length > 0) {
+    statusContent.nextSteps = nextSteps
+  }
+  // else {
+  //   // @TODO: Remove placeholder default content
+  //   statusContent.nextSteps = [
+  //     'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  //     'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+  //   ]
+  // }
+  return statusContent
+}
+
+/**
  * Return scenario content.
  */
 export default function getScenarioContent(claimData: Claim): ScenarioContent {
@@ -212,16 +251,7 @@ export default function getScenarioContent(claimData: Claim): ScenarioContent {
   const scenarioType = getScenario(claimData)
 
   // Construct claim status content.
-  // @TODO: Remove placeholder default content
-  const nextSteps = [
-    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-  ]
-
-  const statusContent: ClaimStatusContent = {
-    statusDescription: getClaimStatusDescription(scenarioType),
-    nextSteps: nextSteps,
-  }
+  const statusContent = buildClaimStatusContent(scenarioType, claimData)
 
   // Construct claim details content.
   // @TODO: Remove placeholder default content

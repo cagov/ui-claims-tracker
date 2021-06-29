@@ -90,7 +90,7 @@ export default async function queryApiGateway(req: IncomingMessage): Promise<Cla
 
   const apiUrlParams: QueryParams = {
     user_key: apiEnvVars.apiUserKey,
-    uniqueNumber: req.headers[apiEnvVars.idHeaderName] as string,
+    uniqueNumber: req.headers[apiEnvVars.idHeaderName.toLowerCase()] as string,
   }
 
   const apiUrl: RequestInfo = buildApiUrl(apiEnvVars.apiUrl, apiUrlParams)
