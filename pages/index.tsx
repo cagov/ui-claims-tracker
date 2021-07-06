@@ -95,8 +95,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   // create pino loggger
   // const logger = pinoms({ streams: [{ stream: writeStream }] })
   // log some events
-  logger.info('Informational message')
-  logger.error(new Error('error'), 'error message')
+  logger.info('Just Pino: Informational message')
+  logger.error(new Error('error'), 'Just pino: error message')
 
   logger.info(req)
 
