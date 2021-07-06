@@ -86,14 +86,14 @@ export default function Home({
 
 export const getServerSideProps: GetServerSideProps = async ({ req, locale }) => {
   const isProd = process.env.NODE_ENV === 'production'
-  // const logger = isProd ? pino({}) : pino({ prettyPrint: true })
+  const logger = isProd ? pino({}) : pino({ prettyPrint: true })
 
-  const insights = require('pino-applicationinsights')
-  const pinoms = require('pino-multi-stream')
+  // const insights = require('pino-applicationinsights')
+  // const pinoms = require('pino-multi-stream')
   // create the Azure Application Insights destination stream
-  const writeStream = await insights.createWriteStream()
+  // const writeStream = await insights.createWriteStream()
   // create pino loggger
-  const logger = pinoms({ streams: [{ stream: writeStream }] })
+  // const logger = pinoms({ streams: [{ stream: writeStream }] })
   // log some events
   logger.info('Informational message')
   logger.error(new Error('error'), 'error message')
