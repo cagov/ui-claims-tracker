@@ -5,7 +5,7 @@ import { ReactElement } from 'react'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetServerSideProps } from 'next'
-import Error from 'next/error'
+import ErrorComponent from 'next/error'
 
 import { Header } from '../components/Header'
 import { Title } from '../components/Title'
@@ -46,7 +46,7 @@ export default function Home({
     mainComponent = (
       <main className="main">
         <Container className="main-content">
-          <Error statusCode={errorCode} />
+          <ErrorComponent statusCode={errorCode} />
         </Container>
       </main>
     )
@@ -86,7 +86,18 @@ export default function Home({
 
 export const getServerSideProps: GetServerSideProps = async ({ req, locale }) => {
   const isProd = process.env.NODE_ENV === 'production'
-  const logger = isProd ? pino({}) : pino({ prettyPrint: true })
+  // const logger = isProd ? pino({}) : pino({ prettyPrint: true })
+
+  const insights = require('pino-applicationinsights')
+  const pinoms = require('pino-multi-stream')
+  // create the Azure Application Insights destination stream
+  const writeStream = await insights.createWriteStream()
+  // create pino loggger
+  const logger = pinoms({ streams: [{ stream: writeStream }] })
+  // log some events
+  logger.info('Informational message')
+  logger.error(new Error('error'), 'error message')
+
   logger.info(req)
 
   let errorCode: number | null = null
