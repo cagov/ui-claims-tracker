@@ -4,14 +4,13 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
-
+  - main
 
 # no PR triggers
 pr: none
 
 pool:
-  vmImage: "ubuntu-latest"
+  vmImage: 'ubuntu-latest'
 
 steps:
   - task: NodeAndNpmTool@1
@@ -21,7 +20,7 @@ steps:
 
   - script: sudo npm install -g yarn
 
-  - script: yarn install
+  - script: yarn install --production
     displayName: 'Install dependencies'
 
   - script: yarn build
@@ -29,14 +28,14 @@ steps:
 
   - task: ArchiveFiles@2
     inputs:
-      rootFolderOrFile: "$(build.sourcesDirectory)"
+      rootFolderOrFile: '$(build.sourcesDirectory)'
       includeRootFolder: false
 
   - script: zip -r --symlinks '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' .
     displayName: 'ZIP com SymLinks'
 
   - task: PublishBuildArtifacts@1
-    displayName: "Publish artifacts: drop"
+    displayName: 'Publish artifacts: drop'
 
   - task: Veracode@3
     displayName: 'Upload and scan: $(build.artifactstagingdirectory)'
