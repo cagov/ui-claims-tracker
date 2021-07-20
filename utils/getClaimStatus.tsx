@@ -84,12 +84,21 @@ export function buildClaimStatusSummary(
 }
 
 /**
+ * Get conditional continue certifying next step.
+ */
+export function displayContinueCertifying(): TransLineProps {
+  const keys = ['conditional-next-steps', 'continue-certifying']
+  return buildTransLineProps(claimStatusJson['conditional-next-steps']['continue-certifying'], buildI18nKey(keys))
+}
+
+/**
  * Get next steps content for Claim Status.
  */
 export function buildNextSteps(
   scenarioObject: ClaimStatusScenarioJson,
   scenarioString: string,
   whichSteps: StepType,
+  continueCertifying = false,
 ): TransLineProps[] {
   const steps: TransLineProps[] = []
   const json = scenarioObject[whichSteps]
@@ -97,13 +106,18 @@ export function buildNextSteps(
     const keys = ['scenarios', scenarioString, whichSteps, index.toString()]
     steps.push(buildTransLineProps(value, buildI18nKey(keys)))
   }
+
+  // If we should display the "continue certifying" next step, then display it as the first step.
+  if (continueCertifying) {
+    steps.unshift(displayContinueCertifying())
+  }
   return steps
 }
 
 /**
  * Get combined Claim Status content.
  */
-export default function getClaimStatus(scenarioType: ScenarioType): ClaimStatusContent {
+export default function getClaimStatus(scenarioType: ScenarioType, continueCertifying: boolean): ClaimStatusContent {
   // Explicitly cast the scenario string (e.g. scenario1, scenario2) into the union of literal types
   // expected by Typescript. scenarioString must be one of the key names in claimStatusJson.scenarios
   // or this won't compile. For a very good explanation of `keyof typeof` Typescript's and union of
@@ -116,7 +130,7 @@ export default function getClaimStatus(scenarioType: ScenarioType): ClaimStatusC
   return {
     heading: buildClaimStatusHeading(scenarioType),
     summary: buildClaimStatusSummary(scenarioObject, scenarioString),
-    yourNextSteps: buildNextSteps(scenarioObject, scenarioString, 'your-next-steps'),
+    yourNextSteps: buildNextSteps(scenarioObject, scenarioString, 'your-next-steps', continueCertifying),
     eddNextSteps: buildNextSteps(scenarioObject, scenarioString, 'edd-next-steps'),
   }
 }

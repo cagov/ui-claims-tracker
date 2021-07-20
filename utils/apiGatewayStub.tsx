@@ -10,7 +10,11 @@ import { Claim } from '../types/common'
 /**
  * Stub the API gateway response for a given scenario.
  */
-export default function apiGatewayStub(scenarioType: ScenarioType, programType = 'UI'): Claim {
+export default function apiGatewayStub(
+  scenarioType: ScenarioType,
+  hasCertificationWeeksAvailable = false,
+  programType = 'UI',
+): Claim {
   // Default empty response from the API gateway
   const claim: Claim = {
     uniqueNumber: null,
@@ -28,12 +32,16 @@ export default function apiGatewayStub(scenarioType: ScenarioType, programType =
   switch (scenarioType) {
     case ScenarioType.Scenario1:
       claim.pendingDetermination = [{ determinationStatus: null }]
+      claim.hasCertificationWeeksAvailable = hasCertificationWeeksAvailable
       break
 
     case ScenarioType.Scenario4:
       claim.hasPendingWeeks = true
+      claim.hasCertificationWeeksAvailable = hasCertificationWeeksAvailable
       break
 
+    // Note that Scenarios 5 & 6 explicitly differ based on whether hasCertificationWeeksAvailable
+    // is true or false, so we ignore the argument.
     case ScenarioType.Scenario5:
       claim.hasPendingWeeks = false
       claim.hasCertificationWeeksAvailable = false

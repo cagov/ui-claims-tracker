@@ -29,6 +29,11 @@ export default {
         labels: programTypeNames,
       },
     },
+    hasCertificationWeeksAvailable: {
+      control: {
+        type: 'boolean',
+      },
+    },
     errorCode: {
       control: {
         type: 'text',
@@ -41,10 +46,13 @@ export default {
 interface StoryHomeProps extends HomeProps {
   scenario: number
   programType: string
+  hasCertificationWeeksAvailable: boolean
 }
 
 const Template: Story<StoryHomeProps> = ({ ...args }) => {
-  args.scenarioContent = getScenarioContent(apiGatewayStub(args.scenario, args.programType))
+  args.scenarioContent = getScenarioContent(
+    apiGatewayStub(args.scenario, args.hasCertificationWeeksAvailable, args.programType),
+  )
   return <Home {...args} />
 }
 

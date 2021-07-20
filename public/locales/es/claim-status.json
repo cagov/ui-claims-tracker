@@ -84,7 +84,8 @@
     }
   },
   "conditional-next-steps": {
-    "certify-no-pending": "<0>Siga certificando</0> mientras necesite beneficios.",
-    "certify-pending": "<0>Siga certificando</0> mientras necesite beneficios, para que sus pagos no se retrasen más."
+    "continue-certifying": {
+      "text": "Continúe <0>certificando los beneficios</0> mientras determinamos su elegibilidad."
+    }
   }
 }

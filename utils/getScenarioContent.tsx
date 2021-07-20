@@ -56,6 +56,25 @@ export function getScenario(claimData: Claim): ScenarioType {
   }
 }
 
+/**
+ * Return whether the Claim Status should display the "continue certifying" content.
+ */
+export function continueCertifying(scenarioType: ScenarioType, claimData: Claim): boolean {
+  // If the Scenario is not scenario 5 or 6
+  // AND hasCertificationWeeksAvailable is true
+  // Then we should display the "continue certifying" content.
+  if (
+    ![ScenarioType.Scenario5, ScenarioType.Scenario6].includes(scenarioType) &&
+    claimData.hasCertificationWeeksAvailable
+  ) {
+    return true
+  }
+  // Otherwise, we should not display the "continue certifying" content.
+  else {
+    return false
+  }
+}
+
 /*
  * Return scenario content.
  */
@@ -64,7 +83,7 @@ export default function getScenarioContent(claimData: Claim): ScenarioContent {
   const scenarioType = getScenario(claimData)
 
   // Construct claim status content.
-  const statusContent = getClaimStatus(scenarioType)
+  const statusContent = getClaimStatus(scenarioType, continueCertifying(scenarioType, claimData))
 
   // Construct claim details content.
   if (!claimData.claimDetails) {

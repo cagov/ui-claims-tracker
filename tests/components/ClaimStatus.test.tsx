@@ -18,22 +18,39 @@ function renderClaimStatusComponent(statusContent: ClaimStatusContent): string {
     .toJSON()
 }
 
-function testClaimStatus(scenarioType: ScenarioType): string {
-  const scenarioContent = getScenarioContent(apiGatewayStub(scenarioType))
+function testClaimStatus(scenarioType: ScenarioType, hasCertificationWeeksAvailable: boolean): string {
+  const scenarioContent = getScenarioContent(apiGatewayStub(scenarioType, hasCertificationWeeksAvailable))
   return renderClaimStatusComponent(scenarioContent.statusContent)
 }
 
-describe('ClaimStatus', () => {
-  it('renders for Scenario1', () => {
-    expect(testClaimStatus(ScenarioType.Scenario1)).toMatchSnapshot()
+describe('Scenario 1', () => {
+  it('matches when there are weeks to certify', () => {
+    expect(testClaimStatus(ScenarioType.Scenario1, true)).toMatchSnapshot()
   })
-  it('renders for Scenario4', () => {
-    expect(testClaimStatus(ScenarioType.Scenario4)).toMatchSnapshot()
+  it("matches when there aren't weeks to certify", () => {
+    expect(testClaimStatus(ScenarioType.Scenario1, false)).toMatchSnapshot()
   })
-  it('renders for Scenario5', () => {
+})
+
+describe('Scenario 4', () => {
+  it('matches when there are weeks to certify', () => {
+    expect(testClaimStatus(ScenarioType.Scenario4, true)).toMatchSnapshot()
+  })
+  it("matches when there aren't weeks to certify", () => {
+    expect(testClaimStatus(ScenarioType.Scenario4, false)).toMatchSnapshot()
+  })
+})
+
+// Note that Scenarios 5 & 6 explicitly differ based on whether hasCertificationWeeksAvailable
+// is true or false, so it doesn't make sense to test again.
+describe('Scenario 5', () => {
+  it('matches', () => {
     expect(testClaimStatus(ScenarioType.Scenario5)).toMatchSnapshot()
   })
-  it('renders for Scenario6', () => {
+})
+
+describe('Scenario 6', () => {
+  it('matches', () => {
     expect(testClaimStatus(ScenarioType.Scenario6)).toMatchSnapshot()
   })
 })

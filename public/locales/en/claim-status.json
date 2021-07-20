@@ -90,8 +90,9 @@
     }
   },
   "conditional-next-steps": {
-    "certify-no-pending": "<0>Keep certifying</0> as long as you need benefits.",
-    "certify-pending": "<0>Keep certifying</0> as long as you need benefits, so your payments are not delayed further.",
-    "contact-info": "Make sure we have your current phone number and email address."
+    "continue-certifying": {
+      "text": "Continue to <0>certify for benefits</0> while we determine your eligibility.",
+      "links": ["edd-ui-certify"]
+    }
   }
 }
