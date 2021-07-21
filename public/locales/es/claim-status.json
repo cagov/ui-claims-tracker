@@ -7,7 +7,7 @@
       },
       "your-next-steps": [
         {
-          "text": "Confirme que tenemos su <0>número de teléfono y dirección postal</0> actuales."
+          "text": "Confirme que tenemos su número de teléfono y dirección postal actuales. Vaya a la <0>página de inicio de UI Online</0>, seleccione <strong>Perfil</strong> en el menú principal y luego seleccione <strong>Información de contacto</strong>."
         },
         {
           "text": "Consulte su correo para obtener la <em>Notificación de la entrevista de elegibilidad para los beneficios del seguro de desempleo</em> (DE 4800). Le explicará el problema y le ayudará a prepararse para la entrevista."
@@ -78,7 +78,7 @@
       ],
       "edd-next-steps": [
         {
-          "text": "Cuando procesemos su certificación, actualizaremos el estado de pago en su Historial de reclamos."
+          "text": "Cuando procesemos su certificación, actualizaremos el estado del pago. Vaya a la <0>página de inicio de UI Online</0> y seleccione <strong>Historial</strong> en el menú principal."
         }
       ]
     }

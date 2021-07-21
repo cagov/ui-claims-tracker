@@ -7,10 +7,12 @@ import { ClaimStatusContent } from '../types/common'
 
 export interface ClaimStatusProps extends ClaimStatusContent {
   loading: boolean
+  userArrivedFromUioMobile: boolean
 }
 
 export const ClaimStatus: React.FC<ClaimStatusProps> = ({
   loading = false,
+  userArrivedFromUioMobile = false,
   heading,
   summary,
   yourNextSteps,
@@ -25,10 +27,25 @@ export const ClaimStatus: React.FC<ClaimStatusProps> = ({
         <TextLine loading={loading} header text={t(heading)} />
       </div>
       <div className="summary">
-        <TransLine loading={loading} i18nKey={summary.i18nKey} links={summary.links} />
+        <TransLine
+          loading={loading}
+          userArrivedFromUioMobile={userArrivedFromUioMobile}
+          i18nKey={summary.i18nKey}
+          links={summary.links}
+        />
       </div>
-      <NextSteps loading={loading} header={t('claim-status.your-next-steps')} nextSteps={yourNextSteps} />
-      <NextSteps loading={loading} header={t('claim-status.edd-next-steps')} nextSteps={eddNextSteps} />
+      <NextSteps
+        loading={loading}
+        userArrivedFromUioMobile={userArrivedFromUioMobile}
+        header={t('claim-status.your-next-steps')}
+        nextSteps={yourNextSteps}
+      />
+      <NextSteps
+        loading={loading}
+        userArrivedFromUioMobile={userArrivedFromUioMobile}
+        header={t('claim-status.edd-next-steps')}
+        nextSteps={eddNextSteps}
+      />
     </div>
   )
 }

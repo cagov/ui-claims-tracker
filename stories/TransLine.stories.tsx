@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import { TransLine as TransLineComponent } from '../components/TransLine'
-import { TransLineProps } from '../types/common'
+import { TransLine as TransLineComponent, TransLineProps } from '../components/TransLine'
 
 export default {
   title: 'Component/Atoms/Trans Line',

@@ -18,13 +18,13 @@ import { Footer } from '../components/Footer'
 import queryApiGateway from '../utils/queryApiGateway'
 import getScenarioContent from '../utils/getScenarioContent'
 import { ScenarioContent } from '../types/common'
-import { useRouter } from 'next/router'
 
 export interface HomeProps {
   scenarioContent: ScenarioContent
   timedOut?: boolean
   loading: boolean
   errorCode?: number | null
+  userArrivedFromUioMobile?: boolean
 }
 
 export default function Home({
@@ -32,13 +32,9 @@ export default function Home({
   timedOut = false,
   loading,
   errorCode = null,
+  userArrivedFromUioMobile = false,
 }: HomeProps): ReactElement {
   const { t } = useTranslation('common')
-
-  // Note whether the user came from the main UIO website or UIO Mobile, and match
-  // that in our links back out to UIO.
-  const router = useRouter()
-  const userArrivedFromUioMobile = router.query?.from === 'uiom'
 
   // If any errorCode is provided, render the error page.
   let mainComponent: JSX.Element
@@ -58,6 +54,7 @@ export default function Home({
           <LanguageSwitcher userArrivedFromUioMobile={userArrivedFromUioMobile} />
           <ClaimSection
             loading={loading}
+            userArrivedFromUioMobile={userArrivedFromUioMobile}
             statusContent={scenarioContent.statusContent}
             detailsContent={scenarioContent.detailsContent}
           />
@@ -84,7 +81,7 @@ export default function Home({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, locale, query }) => {
   const isAzureEnv = process.env.NODE_ENV === 'production'
 
   // Pino: use pretty print and log to STDOUT for local environments.
@@ -97,6 +94,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   }
 
   logger.info(req)
+  logger.info(query)
 
   let errorCode: number | null = null
   let scenarioContent: ScenarioContent | null = null
@@ -115,12 +113,17 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
     errorCode = 500
   }
 
+  // Note whether the user came from the main UIO website or UIO Mobile, and match
+  // that in our links back out to UIO.
+  const userArrivedFromUioMobile = query?.from === 'uiom'
+
   // Return Props.
   return {
     props: {
       scenarioContent: scenarioContent,
       loading: false,
       errorCode: errorCode,
+      userArrivedFromUioMobile: userArrivedFromUioMobile,
       ...(await serverSideTranslations(locale || 'en', ['common', 'claim-details', 'claim-status'])),
     },
   }

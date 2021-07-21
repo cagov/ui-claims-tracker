@@ -38,5 +38,12 @@
     "header": "Your Session Will End Soon",
     "warning": "To protect your information, you will be logged out in {{numberOfMinutes}} minutes if you do not continue.",
     "button": "Stay Logged In"
+  },
+  "urls": {
+    "edd": {
+      "ui-certify": "https://edd.ca.gov/Unemployment/certify.htm",
+      "ui-claim-status": "https://www.edd.ca.gov/unemployment/claim-status.htm",
+      "ui-reopen": "https://edd.ca.gov/Unemployment/Reopen-A-Claim.htm"
+    }
   }
 }

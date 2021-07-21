@@ -32,6 +32,10 @@ i18n.use(initReactI18next).init({
           styledStringOneLink: 'first <strong>second</strong> <0>third</0>',
           styledLink: 'first <strong><0>second</0></strong>',
         },
+        urls: {
+          alpha: 'https://example.com/alpha',
+          beta: 'https://example.com/beta',
+        },
       },
     },
   },

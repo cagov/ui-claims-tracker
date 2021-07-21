@@ -34,6 +34,11 @@ export default {
         type: 'boolean',
       },
     },
+    userArrivedFromUioMobile: {
+      control: {
+        type: 'boolean',
+      },
+    },
     errorCode: {
       control: {
         type: 'text',

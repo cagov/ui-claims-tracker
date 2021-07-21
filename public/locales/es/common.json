@@ -38,5 +38,12 @@
     "header": "Tu sesión terminará pronto",
     "warning": "Para proteger su información, se cerrará la sesión en {{numberOfMinutes}} minutos si no continúa.",
     "button": "Sigue Trabajando"
+  },
+  "urls": {
+    "edd": {
+      "ui-certify": "https://edd.ca.gov/Unemployment/certify-espanol.htm",
+      "ui-claim-status": "https://www.edd.ca.gov/unemployment/claim-status-espanol.htm",
+      "ui-reopen": "https://edd.ca.gov/Unemployment/Reopen-A-Claim-Espanol.htm"
+    }
   }
 }

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Scenario 1 matches when there are weeks to certify 1`] = `
+exports[`Scenario 1 matches when there are weeks to certify, on desktop 1`] = `
 <div
   className="claim-status claim-section"
 >
@@ -47,12 +47,20 @@ exports[`Scenario 1 matches when there are weeks to certify 1`] = `
         <li
           className="next-step"
         >
-          Confirm we have your current 
+          Confirm we have your current phone number and mailing address. Go to the 
           <a
-            href="https://edd.ca.gov/FAQ_-_Benefit_Programs_Online.htm"
+            href="https://uio.edd.ca.gov/UIO/Pages/Public/ExternalUser/UIOnlineLandingPage.aspx"
           >
-            phone number and mailing address
+            UI Online homepage
           </a>
+          , select 
+          <strong>
+            Profile
+          </strong>
+           from the main menu, then select 
+          <strong>
+            Contact Information
+          </strong>
           .
         </li>
         <li
@@ -88,7 +96,7 @@ exports[`Scenario 1 matches when there are weeks to certify 1`] = `
 </div>
 `;
 
-exports[`Scenario 1 matches when there aren't weeks to certify 1`] = `
+exports[`Scenario 1 matches when there are weeks to certify, on mobile 1`] = `
 <div
   className="claim-status claim-section"
 >
@@ -124,12 +132,31 @@ exports[`Scenario 1 matches when there aren't weeks to certify 1`] = `
         <li
           className="next-step"
         >
-          Confirm we have your current 
+          Continue to 
           <a
-            href="https://edd.ca.gov/FAQ_-_Benefit_Programs_Online.htm"
+            href="https://edd.ca.gov/Unemployment/certify.htm"
           >
-            phone number and mailing address
+            certify for benefits
           </a>
+           while we determine your eligibility.
+        </li>
+        <li
+          className="next-step"
+        >
+          Confirm we have your current phone number and mailing address. Go to the 
+          <a
+            href="https://uiom.edd.ca.gov/UIOM/Pages/Public/ExternalUser/UIOMobileLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
+          , select 
+          <strong>
+            Profile
+          </strong>
+           from the main menu, then select 
+          <strong>
+            Contact Information
+          </strong>
           .
         </li>
         <li
@@ -165,7 +192,177 @@ exports[`Scenario 1 matches when there aren't weeks to certify 1`] = `
 </div>
 `;
 
-exports[`Scenario 4 matches when there are weeks to certify 1`] = `
+exports[`Scenario 1 matches when there aren't weeks to certify, on desktop 1`] = `
+<div
+  className="claim-status claim-section"
+>
+  <h2>
+    Claim Status
+  </h2>
+  <div
+    className="pending-status claim-subsection"
+  >
+    <h3
+      className="header-line"
+    >
+      Pending Eligibility — Phone Interview Will Be Scheduled
+    </h3>
+  </div>
+  <div
+    className="summary"
+  >
+    We identified an issue that could make you ineligible for benefits. We need to confirm your eligibility in a phone interview.
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      Your Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          Confirm we have your current phone number and mailing address. Go to the 
+          <a
+            href="https://uio.edd.ca.gov/UIO/Pages/Public/ExternalUser/UIOnlineLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
+          , select 
+          <strong>
+            Profile
+          </strong>
+           from the main menu, then select 
+          <strong>
+            Contact Information
+          </strong>
+          .
+        </li>
+        <li
+          className="next-step"
+        >
+          Check your mail for the 
+          &lt;em&gt;Notification of Unemployment Insurance Benefits Eligibility Interview&lt;/em&gt;
+           (DE 4800). It will explain the issue and help you prepare for the interview.
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      EDD Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          We will schedule a phone interview to determine your eligibility for benefits. This page will be updated with appointment details once your interview is scheduled.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Scenario 1 matches when there aren't weeks to certify, on mobile 1`] = `
+<div
+  className="claim-status claim-section"
+>
+  <h2>
+    Claim Status
+  </h2>
+  <div
+    className="pending-status claim-subsection"
+  >
+    <h3
+      className="header-line"
+    >
+      Pending Eligibility — Phone Interview Will Be Scheduled
+    </h3>
+  </div>
+  <div
+    className="summary"
+  >
+    We identified an issue that could make you ineligible for benefits. We need to confirm your eligibility in a phone interview.
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      Your Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          Confirm we have your current phone number and mailing address. Go to the 
+          <a
+            href="https://uiom.edd.ca.gov/UIOM/Pages/Public/ExternalUser/UIOMobileLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
+          , select 
+          <strong>
+            Profile
+          </strong>
+           from the main menu, then select 
+          <strong>
+            Contact Information
+          </strong>
+          .
+        </li>
+        <li
+          className="next-step"
+        >
+          Check your mail for the 
+          &lt;em&gt;Notification of Unemployment Insurance Benefits Eligibility Interview&lt;/em&gt;
+           (DE 4800). It will explain the issue and help you prepare for the interview.
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      EDD Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          We will schedule a phone interview to determine your eligibility for benefits. This page will be updated with appointment details once your interview is scheduled.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Scenario 4 matches when there are weeks to certify, on desktop 1`] = `
 <div
   className="claim-status claim-section"
 >
@@ -213,7 +410,11 @@ exports[`Scenario 4 matches when there are weeks to certify 1`] = `
           className="next-step"
         >
           Check your 
-          UI Online homepage
+          <a
+            href="https://uio.edd.ca.gov/UIO/Pages/Public/ExternalUser/UIOnlineLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
            and inbox for the latest updates.
         </li>
         <li
@@ -269,7 +470,7 @@ exports[`Scenario 4 matches when there are weeks to certify 1`] = `
 </div>
 `;
 
-exports[`Scenario 4 matches when there aren't weeks to certify 1`] = `
+exports[`Scenario 4 matches when there are weeks to certify, on mobile 1`] = `
 <div
   className="claim-status claim-section"
 >
@@ -305,8 +506,23 @@ exports[`Scenario 4 matches when there aren't weeks to certify 1`] = `
         <li
           className="next-step"
         >
+          Continue to 
+          <a
+            href="https://edd.ca.gov/Unemployment/certify.htm"
+          >
+            certify for benefits
+          </a>
+           while we determine your eligibility.
+        </li>
+        <li
+          className="next-step"
+        >
           Check your 
-          UI Online homepage
+          <a
+            href="https://uiom.edd.ca.gov/UIOM/Pages/Public/ExternalUser/UIOMobileLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
            and inbox for the latest updates.
         </li>
         <li
@@ -362,7 +578,201 @@ exports[`Scenario 4 matches when there aren't weeks to certify 1`] = `
 </div>
 `;
 
-exports[`Scenario 5 matches 1`] = `
+exports[`Scenario 4 matches when there aren't weeks to certify, on desktop 1`] = `
+<div
+  className="claim-status claim-section"
+>
+  <h2>
+    Claim Status
+  </h2>
+  <div
+    className="pending-status claim-subsection"
+  >
+    <h3
+      className="header-line"
+    >
+      Review Required
+    </h3>
+  </div>
+  <div
+    className="summary"
+  >
+    We identified an issue and may need to determine your eligibility or verify your information.
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      Your Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          Check your 
+          <a
+            href="https://uio.edd.ca.gov/UIO/Pages/Public/ExternalUser/UIOnlineLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
+           and inbox for the latest updates.
+        </li>
+        <li
+          className="next-step"
+        >
+          Check your mail. We may send requests for additional information. Make sure to respond as requested to avoid delays in processing your claim.
+        </li>
+        <li
+          className="next-step"
+        >
+          For more information, visit 
+          <a
+            href="https://www.edd.ca.gov/unemployment/claim-status.htm"
+          >
+            Claim Status: Pending Payment
+          </a>
+          .
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      EDD Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          We will contact you if we need more information to resolve the issue.
+        </li>
+        <li
+          className="next-step"
+        >
+          We will email you when you have weeks available to 
+          <a
+            href="https://edd.ca.gov/Unemployment/certify.htm"
+          >
+            certify for benefits
+          </a>
+          .
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Scenario 4 matches when there aren't weeks to certify, on mobile 1`] = `
+<div
+  className="claim-status claim-section"
+>
+  <h2>
+    Claim Status
+  </h2>
+  <div
+    className="pending-status claim-subsection"
+  >
+    <h3
+      className="header-line"
+    >
+      Review Required
+    </h3>
+  </div>
+  <div
+    className="summary"
+  >
+    We identified an issue and may need to determine your eligibility or verify your information.
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      Your Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          Check your 
+          <a
+            href="https://uiom.edd.ca.gov/UIOM/Pages/Public/ExternalUser/UIOMobileLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
+           and inbox for the latest updates.
+        </li>
+        <li
+          className="next-step"
+        >
+          Check your mail. We may send requests for additional information. Make sure to respond as requested to avoid delays in processing your claim.
+        </li>
+        <li
+          className="next-step"
+        >
+          For more information, visit 
+          <a
+            href="https://www.edd.ca.gov/unemployment/claim-status.htm"
+          >
+            Claim Status: Pending Payment
+          </a>
+          .
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      EDD Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          We will contact you if we need more information to resolve the issue.
+        </li>
+        <li
+          className="next-step"
+        >
+          We will email you when you have weeks available to 
+          <a
+            href="https://edd.ca.gov/Unemployment/certify.htm"
+          >
+            certify for benefits
+          </a>
+          .
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Scenario 5 matches, on desktop 1`] = `
 <div
   className="claim-status claim-section"
 >
@@ -398,7 +808,13 @@ exports[`Scenario 5 matches 1`] = `
         <li
           className="next-step"
         >
-          Check your UI Online homepage and inbox for the latest updates.
+          Check your 
+          <a
+            href="https://uio.edd.ca.gov/UIO/Pages/Public/ExternalUser/UIOnlineLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
+           and inbox for the latest updates.
         </li>
         <li
           className="next-step"
@@ -448,7 +864,99 @@ exports[`Scenario 5 matches 1`] = `
 </div>
 `;
 
-exports[`Scenario 6 matches 1`] = `
+exports[`Scenario 5 matches, on mobile 1`] = `
+<div
+  className="claim-status claim-section"
+>
+  <h2>
+    Claim Status
+  </h2>
+  <div
+    className="pending-status claim-subsection"
+  >
+    <h3
+      className="header-line"
+    >
+      No Weeks Available to Certify
+    </h3>
+  </div>
+  <div
+    className="summary"
+  >
+    You currently have no weeks available to certify for benefits.
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      Your Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          Check your 
+          <a
+            href="https://uiom.edd.ca.gov/UIOM/Pages/Public/ExternalUser/UIOMobileLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
+           and inbox for the latest updates.
+        </li>
+        <li
+          className="next-step"
+        >
+          Check your mail. We may send requests for additional information. Make sure to respond as requested to avoid delays in processing your claim.
+        </li>
+        <li
+          className="next-step"
+        >
+          If it’s been more than 30 days since you last certified for benefits, you must 
+          <a
+            href="https://edd.ca.gov/Unemployment/Reopen-A-Claim.htm"
+          >
+            reopen your claim
+          </a>
+           before you can certify.
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      EDD Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          We will email you when you have weeks available to 
+          <a
+            href="https://edd.ca.gov/Unemployment/certify.htm"
+          >
+            certify for benefits
+          </a>
+          .
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Scenario 6 matches, on desktop 1`] = `
 <div
   className="claim-status claim-section"
 >
@@ -494,7 +1002,13 @@ exports[`Scenario 6 matches 1`] = `
           <strong>
             Certify for Benefits
           </strong>
-           in the Notification section on your UI Online homepage.
+           in the Notification section on your 
+          <a
+            href="https://uio.edd.ca.gov/UIO/Pages/Public/ExternalUser/UIOnlineLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
+          .
         </li>
       </ul>
     </div>
@@ -514,7 +1028,107 @@ exports[`Scenario 6 matches 1`] = `
         <li
           className="next-step"
         >
-          When we process your certification, we will update the payment status on your Claim History.
+          When we process your certification, we will update the payment status. Go to the 
+          <a
+            href="https://uio.edd.ca.gov/UIO/Pages/Public/ExternalUser/UIOnlineLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
+           and select 
+          <strong>
+            History
+          </strong>
+           from the main menu.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Scenario 6 matches, on mobile 1`] = `
+<div
+  className="claim-status claim-section"
+>
+  <h2>
+    Claim Status
+  </h2>
+  <div
+    className="pending-status claim-subsection"
+  >
+    <h3
+      className="header-line"
+    >
+      Weeks Available to Certify
+    </h3>
+  </div>
+  <div
+    className="summary"
+  >
+    You have weeks available to 
+    <a
+      href="https://edd.ca.gov/Unemployment/certify.htm"
+    >
+      certify for benefits
+    </a>
+    .
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      Your Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          Select 
+          <strong>
+            Certify for Benefits
+          </strong>
+           in the Notification section on your 
+          <a
+            href="https://uiom.edd.ca.gov/UIOM/Pages/Public/ExternalUser/UIOMobileLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
+          .
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    className="next-steps claim-subsection"
+  >
+    <h3
+      className="next-steps-header"
+    >
+      EDD Next Steps
+    </h3>
+    <div
+      className="next-step-explanation"
+    >
+      <ul>
+        <li
+          className="next-step"
+        >
+          When we process your certification, we will update the payment status. Go to the 
+          <a
+            href="https://uiom.edd.ca.gov/UIOM/Pages/Public/ExternalUser/UIOMobileLandingPage.aspx"
+          >
+            UI Online homepage
+          </a>
+           and select 
+          <strong>
+            History
+          </strong>
+           from the main menu.
         </li>
       </ul>
     </div>

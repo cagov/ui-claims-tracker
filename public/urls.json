@@ -5,14 +5,9 @@
   "edd-about-contact": "https://www.edd.ca.gov/About_EDD/Contact_EDD.htm",
   "edd-about-privacy-policy": "https://www.edd.ca.gov/About_EDD/Privacy_Policy.htm",
   "edd-ca-gov": "https://edd.ca.gov",
-  "edd-faq-bpo": "https://edd.ca.gov/FAQ_-_Benefit_Programs_Online.htm",
   "edd-help-new-claim": "https://uio.edd.ca.gov/UIO/Pages/Public/help/index.htm#t=en-US/Public/NewClaim/UIOnlineNewClaimLandingPage.htm",
   "edd-log-in": "https://portal.edd.ca.gov/WebApp/Login?resource_url=",
   "edd-log-out": "https://portal.edd.ca.gov/WebApp/Logout",
-  "edd-ui-certify": "https://edd.ca.gov/Unemployment/certify.htm",
-  "edd-ui-claim-status": "https://www.edd.ca.gov/unemployment/claim-status.htm",
-  "edd-ui-eligibility": "https://edd.ca.gov/Unemployment/Eligibility.htm",
-  "edd-ui-reopen": "https://edd.ca.gov/Unemployment/Reopen-A-Claim.htm",
   "uio-home-url-desktop": "https://uio.edd.ca.gov/UIO/Pages/Public/ExternalUser/UIOnlineLandingPage.aspx",
   "uio-home-url-mobile": "https://uiom.edd.ca.gov/UIOM/Pages/Public/ExternalUser/UIOMobileLandingPage.aspx"
 }

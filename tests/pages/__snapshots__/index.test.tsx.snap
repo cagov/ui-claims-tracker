@@ -201,12 +201,20 @@ exports[`Exemplar react-test-renderer Snapshot test renders homepage unchanged 1
                 <li
                   className="next-step"
                 >
-                  Confirm we have your current 
+                  Confirm we have your current phone number and mailing address. Go to the 
                   <a
-                    href="https://edd.ca.gov/FAQ_-_Benefit_Programs_Online.htm"
+                    href="https://uio.edd.ca.gov/UIO/Pages/Public/ExternalUser/UIOnlineLandingPage.aspx"
                   >
-                    phone number and mailing address
+                    UI Online homepage
                   </a>
+                  , select 
+                  <strong>
+                    Profile
+                  </strong>
+                   from the main menu, then select 
+                  <strong>
+                    Contact Information
+                  </strong>
                   .
                 </li>
                 <li
